@@ -68,31 +68,31 @@ export function Header({ onOpenSidebar }: HeaderProps) {
         >
           <Menu className="h-5 w-5" />
         </button>
-        <h1 className="truncate text-base font-semibold text-foreground sm:text-lg">
+        <h1 className="truncate text-sm font-semibold tracking-tight text-foreground sm:text-base">
           {t(titleKey as string)}
         </h1>
       </div>
 
-      <div className="flex items-center gap-1 sm:gap-2">
+      <div className="flex items-center gap-1.5 sm:gap-2">
         <ModeToggle />
 
         <DropdownMenu>
         <DropdownMenuTrigger
-          className="flex items-center gap-2 rounded-md px-1 py-1 transition-colors hover:bg-muted/70 focus:bg-muted/70 focus:outline-none data-popup-open:bg-muted/70 sm:gap-3 sm:pl-1 sm:pr-3"
+          className="flex items-center gap-2 rounded-[6px] border border-transparent p-1 transition-colors hover:border-border hover:bg-muted/60 focus:bg-muted/60 focus:outline-none sm:gap-2.5 sm:px-2"
           aria-label={t("openAccountMenu")}
         >
-          <Avatar className="size-8">
+          <Avatar className="size-7">
             {profile?.avatar_url ? (
               <AvatarImage
                 src={profile.avatar_url}
                 alt={profile.full_name ?? t("defaultAvatar")}
               />
             ) : null}
-            <AvatarFallback className="bg-primary/10 text-sm font-medium text-primary">
+            <AvatarFallback className="text-xs font-mono font-medium">
               {initial}
             </AvatarFallback>
           </Avatar>
-          <span className="hidden text-sm font-medium text-foreground sm:inline">
+          <span className="hidden text-xs font-medium text-foreground sm:inline">
             {profile?.full_name ?? t("defaultUser")}
           </span>
         </DropdownMenuTrigger>

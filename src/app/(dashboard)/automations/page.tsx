@@ -285,13 +285,13 @@ function AutomationCard({
     ? tTriggers(`${automation.trigger_type}.label`)
     : automation.trigger_type
   return (
-    <li className="rounded-xl border border-border bg-card transition-colors hover:border-border">
-      <div className="flex items-center gap-4 p-4">
+    <li className="rounded-[8px] border border-border bg-card transition-colors hover:border-foreground/20">
+      <div className="flex items-center gap-3.5 p-3.5">
         <div
-          className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-primary/10"
+          className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-[6px] border border-border bg-muted/60 text-foreground"
           aria-hidden
         >
-          <Zap className="h-5 w-5 text-primary" />
+          <Zap className="h-4 w-4" />
         </div>
 
         <button
@@ -300,23 +300,20 @@ function AutomationCard({
           className="min-w-0 flex-1 text-left"
         >
           <div className="flex items-center gap-2">
-            <span className="truncate text-sm font-semibold text-foreground">
+            <span className="truncate text-sm font-semibold tracking-tight text-foreground">
               {automation.name}
             </span>
             {automation.is_active && (
-              <span className="relative flex h-2 w-2" aria-label={t("activeIndicator")}>
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-primary" />
-              </span>
+              <span className="h-1.5 w-1.5 rounded-[2px] bg-foreground" aria-label={t("activeIndicator")} />
             )}
           </div>
           {automation.description && (
             <p className="mt-0.5 truncate text-xs text-muted-foreground">{automation.description}</p>
           )}
-          <div className="mt-2 flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
+          <div className="mt-1.5 flex flex-wrap items-center gap-2 text-xs font-mono text-muted-foreground">
             <span
               className={cn(
-                "inline-flex items-center rounded-full border px-2 py-0.5 text-[11px] font-medium",
+                "inline-flex items-center rounded-[4px] border px-1.5 py-0.2 text-[10px] font-mono",
                 meta.pillClass,
               )}
             >

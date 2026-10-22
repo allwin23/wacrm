@@ -38,18 +38,17 @@ function RateCell({
 }: {
   value: number;
   total: number;
-  /** Tailwind bg class for the fill, e.g. "bg-primary" */
   color: string;
 }) {
   const pct = percent(value, total);
   return (
     <div className="flex items-center gap-2">
-      <span className="w-10 text-right text-xs tabular-nums text-muted-foreground">
+      <span className="w-10 text-right text-xs font-mono tabular-nums text-muted-foreground">
         {pct}%
       </span>
-      <div className="h-1.5 w-20 overflow-hidden rounded-full bg-muted">
+      <div className="h-1 w-20 overflow-hidden rounded-[2px] bg-muted">
         <div
-          className={`h-1.5 rounded-full ${color}`}
+          className={`h-1 rounded-[2px] ${color}`}
           style={{ width: `${pct}%` }}
         />
       </div>
@@ -253,25 +252,22 @@ export default function BroadcastsPage() {
                       <RateCell
                         value={broadcast.delivered_count}
                         total={broadcast.total_recipients}
-                        color="bg-primary"
+                        color="bg-foreground"
                       />
                     </TableCell>
                     <TableCell className="hidden lg:table-cell">
                       <RateCell
                         value={broadcast.read_count}
                         total={broadcast.total_recipients}
-                        color="bg-blue-500"
+                        color="bg-muted-foreground"
                       />
                     </TableCell>
                     <TableCell>
                       <span
-                        className={`inline-flex items-center gap-1.5 rounded-full border px-2 py-0.5 text-xs font-medium ${status.classes}`}
+                        className={`inline-flex items-center gap-1.5 rounded-[4px] border px-1.5 py-0.5 text-[11px] font-mono ${status.classes}`}
                       >
                         {status.pulse && (
-                          <span className="relative flex h-1.5 w-1.5">
-                            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-yellow-400 opacity-75" />
-                            <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-yellow-400" />
-                          </span>
+                          <span className="h-1.5 w-1.5 rounded-[2px] bg-foreground" />
                         )}
                         {tStatus(status.label)}
                       </span>

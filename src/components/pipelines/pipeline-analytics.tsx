@@ -104,28 +104,28 @@ export function PipelineAnalytics({ stages, deals }: PipelineAnalyticsProps) {
           t={t}
         />
         <Metric
-          icon={<DollarSign className="h-4 w-4 text-primary" />}
+          icon={<DollarSign className="h-4 w-4 text-foreground" />}
           label={t("pipelineValue")}
           value={formatCurrency(stats.totalValue, defaultCurrency)}
           tooltip={t("pipelineValueTooltip")}
           t={t}
         />
         <Metric
-          icon={<Target className="h-4 w-4 text-blue-400" />}
+          icon={<Target className="h-4 w-4 text-foreground" />}
           label={t("avgDealSize")}
           value={formatCurrency(stats.avgValue, defaultCurrency)}
           tooltip={t("avgDealSizeTooltip")}
           t={t}
         />
         <Metric
-          icon={<TrendingUp className="h-4 w-4 text-purple-400" />}
+          icon={<TrendingUp className="h-4 w-4 text-foreground" />}
           label={t("weightedValue")}
           value={formatCurrency(stats.weightedValue, defaultCurrency)}
           tooltip={t("weightedValueTooltip")}
           t={t}
         />
         <Metric
-          icon={<Trophy className="h-4 w-4 text-primary" />}
+          icon={<Trophy className="h-4 w-4 text-foreground" />}
           label={t("wonThisMonth")}
           value={String(stats.wonThisMonth)}
           tooltip={t("wonThisMonthTooltip")}
@@ -158,7 +158,7 @@ function Metric({
   t: any;
 }) {
   return (
-    <div className="rounded-lg bg-muted/50 p-3">
+    <div className="rounded-[6px] border border-border bg-card p-3">
       <div className="flex items-center gap-1.5 text-[10px] font-medium uppercase tracking-wider text-muted-foreground">
         {icon}
         <span>{label}</span>

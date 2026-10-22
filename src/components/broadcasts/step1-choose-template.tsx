@@ -8,9 +8,9 @@ import { Loader2, FileText, ArrowRight } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
 const categoryColors: Record<string, string> = {
-  Marketing: 'bg-purple-500/10 text-purple-400 border-purple-500/20',
-  Utility: 'bg-blue-500/10 text-blue-400 border-blue-500/20',
-  Authentication: 'bg-orange-500/10 text-orange-400 border-orange-500/20',
+  Marketing: 'bg-muted/80 text-foreground border-border',
+  Utility: 'bg-muted/60 text-muted-foreground border-border',
+  Authentication: 'bg-muted/40 text-muted-foreground border-border',
 };
 
 interface Step1Props {
@@ -92,16 +92,16 @@ export function Step1ChooseTemplate({ selectedTemplate, onSelect, onNext, onBack
               <button
                 key={template.id}
                 onClick={() => onSelect(template)}
-                className={`flex flex-col gap-3 rounded-xl border p-4 text-left transition-all ${
+                className={`flex flex-col gap-3 rounded-[8px] border p-4 text-left transition-all ${
                   isSelected
-                    ? 'border-primary bg-primary/5 ring-1 ring-primary/30'
-                    : 'border-border bg-card/50 hover:border-border hover:bg-card'
+                    ? 'border-foreground bg-muted/60 ring-1 ring-foreground/20'
+                    : 'border-border bg-card hover:border-foreground/20 hover:bg-muted/40'
                 }`}
               >
                 <div className="flex items-start justify-between">
                   <h3 className="text-sm font-medium text-foreground">{template.name}</h3>
                   <span
-                    className={`inline-flex items-center rounded-full border px-2 py-0.5 text-[10px] font-medium ${catColor}`}
+                    className={`inline-flex items-center rounded-[4px] border px-1.5 py-0.5 text-[10px] font-mono font-medium ${catColor}`}
                   >
                     {template.category}
                   </span>

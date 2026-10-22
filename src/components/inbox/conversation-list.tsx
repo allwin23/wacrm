@@ -37,9 +37,9 @@ interface ConversationListProps {
 }
 
 const STATUS_COLORS: Record<ConversationStatus, string> = {
-  open: "bg-primary",
-  pending: "bg-amber-500",
-  closed: "bg-muted-foreground",
+  open: "bg-foreground",
+  pending: "bg-muted-foreground",
+  closed: "bg-border",
 };
 
 
@@ -485,13 +485,13 @@ function ConversationItem({
           </p>
           <div className="flex shrink-0 items-center gap-1.5">
             {conversation.unread_count > 0 && (
-              <span className="flex h-4 min-w-4 items-center justify-center rounded-full bg-primary px-1 text-[10px] font-bold text-primary-foreground">
+              <span className="flex h-4 min-w-4 items-center justify-center rounded-[4px] border border-border bg-foreground px-1 text-[9px] font-mono font-medium text-background">
                 {conversation.unread_count}
               </span>
             )}
             <span
               className={cn(
-                "h-2 w-2 rounded-full",
+                "h-1.5 w-1.5 rounded-[2px]",
                 STATUS_COLORS[conversation.status]
               )}
               title={conversation.status}

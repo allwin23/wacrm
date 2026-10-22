@@ -18,15 +18,15 @@ import { useTranslations } from 'next-intl'
 export function PipelineDonut({ data, loading, currency }: PipelineDonutProps) {
   const t = useTranslations('Dashboard.pipelineDonut')
   return (
-    <section className="flex h-full flex-col rounded-xl border border-border bg-card">
-      <header className="border-b border-border px-5 py-4">
-        <h2 className="text-sm font-semibold text-foreground">{t('title')}</h2>
+    <section className="flex h-full flex-col rounded-[8px] border border-border bg-card">
+      <header className="border-b border-border px-4 py-3.5">
+        <h2 className="text-sm font-semibold tracking-tight text-foreground">{t('title')}</h2>
         <p className="mt-0.5 text-xs text-muted-foreground">
           {t('description')}
         </p>
       </header>
 
-      <div className="flex flex-1 flex-col p-5">
+      <div className="flex flex-1 flex-col p-4">
         {loading || !data ? (
           <Skeleton className="h-56 w-full" />
         ) : data.stages.length === 0 ? (
@@ -38,23 +38,26 @@ export function PipelineDonut({ data, loading, currency }: PipelineDonutProps) {
         ) : (
           <>
             <Donut data={data} currency={currency} />
-            <ul className="mt-5 space-y-2">
-              {data.stages.map((s) => (
-                <li key={s.id} className="flex items-center gap-3 text-xs">
-                  <span
-                    className="h-2.5 w-2.5 flex-shrink-0 rounded-full"
-                    style={{ background: s.color }}
-                    aria-hidden
-                  />
-                  <span className="flex-1 truncate text-muted-foreground">{s.name}</span>
-                  <span className="text-muted-foreground tabular-nums">
-                    {t('dealCount', { count: s.dealCount })}
-                  </span>
-                  <span className="w-20 text-right text-muted-foreground tabular-nums">
-                    {formatCurrencyShort(s.totalValue, currency)}
-                  </span>
-                </li>
-              ))}
+            <ul className="mt-4 space-y-1.5 font-mono">
+              {data.stages.map((s, idx) => {
+                const monoColor = ['var(--foreground)', '#a1a1aa', '#71717a', '#52525b', '#3f3f46'][idx % 5]
+                return (
+                  <li key={s.id} className="flex items-center gap-2.5 text-xs">
+                    <span
+                      className="h-2 w-2 flex-shrink-0 rounded-[2px]"
+                      style={{ background: monoColor }}
+                      aria-hidden
+                    />
+                    <span className="flex-1 truncate text-foreground font-sans text-xs">{s.name}</span>
+                    <span className="text-muted-foreground tabular-nums text-[11px]">
+                      {t('dealCount', { count: s.dealCount })}
+                    </span>
+                    <span className="w-16 text-right text-foreground font-medium tabular-nums text-[11px]">
+                      {formatCurrencyShort(s.totalValue, currency)}
+                    </span>
+                  </li>
+                )
+              })}
             </ul>
           </>
         )}
@@ -95,7 +98,8 @@ function Donut({ data, currency }: { data: PipelineDonutData; currency: string }
   const segments = data.stages.map((s, i) => {
     const start = offsets[i] * Math.PI * 2 - Math.PI / 2
     const end = offsets[i + 1] * Math.PI * 2 - Math.PI / 2
-    return { path: arcPath(cx, cy, r, start, end), color: s.color, id: s.id }
+    const monoColor = ['var(--foreground)', '#a1a1aa', '#71717a', '#52525b', '#3f3f46'][i % 5]
+    return { path: arcPath(cx, cy, r, start, end), color: monoColor, id: s.id }
   })
 
   return (

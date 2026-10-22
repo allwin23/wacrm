@@ -97,23 +97,23 @@ function ModeCard({
       aria-checked={isActive}
       aria-label={t("useMode", { mode })}
       className={cn(
-        "flex items-center gap-3 rounded-lg border bg-card p-4 text-left transition-colors",
+        "flex items-center gap-3 rounded-[8px] border bg-card p-3.5 text-left transition-colors",
         isActive
-          ? "border-primary/60 ring-2 ring-primary/40"
-          : "border-border hover:border-border hover:bg-muted/40",
+          ? "border-foreground ring-1 ring-foreground/20 bg-muted/30"
+          : "border-border hover:border-foreground/30 hover:bg-muted/40",
       )}
     >
       <span
         aria-hidden
-        className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-muted text-foreground"
+        className="flex h-8 w-8 shrink-0 items-center justify-center rounded-[6px] border border-border bg-muted/60 text-foreground"
       >
         <Icon className="h-4 w-4" />
       </span>
-      <span className="flex-1 text-sm font-semibold capitalize text-foreground">
+      <span className="flex-1 text-xs font-semibold capitalize text-foreground">
         {mode}
       </span>
       {isActive && (
-        <span className="inline-flex items-center gap-1 rounded-full bg-primary/15 px-2 py-0.5 text-[11px] font-medium text-primary">
+        <span className="inline-flex items-center gap-1 rounded-[4px] border border-border bg-foreground px-1.5 py-0.5 text-[10px] font-mono font-medium text-background">
           <Check className="h-3 w-3" />
           {t("active")}
         </span>
@@ -145,39 +145,35 @@ function ThemeCard({
       aria-pressed={isActive}
       aria-label={t("useTheme", { name })}
       className={cn(
-        "flex flex-col gap-3 rounded-lg border bg-card p-4 text-left transition-colors",
+        "flex flex-col gap-3 rounded-[8px] border bg-card p-3.5 text-left transition-colors",
         isActive
-          ? "border-primary/60 ring-2 ring-primary/40"
-          : "border-border hover:border-border hover:bg-muted/40",
+          ? "border-foreground ring-1 ring-foreground/20 bg-muted/20"
+          : "border-border hover:border-foreground/30 hover:bg-muted/40",
       )}
     >
       <div className="flex items-center justify-between">
         <span
           aria-hidden
-          className="h-8 w-8 shrink-0 rounded-full"
-          style={{
-            background: swatch,
-            boxShadow: "inset 0 0 0 1px oklch(1 0 0 / 0.15)",
-          }}
+          className="h-6 w-6 shrink-0 rounded-[4px] border border-border bg-foreground"
         />
         {isActive && (
-          <span className="inline-flex items-center gap-1 rounded-full bg-primary/15 px-2 py-0.5 text-[11px] font-medium text-primary">
+          <span className="inline-flex items-center gap-1 rounded-[4px] border border-border bg-foreground px-1.5 py-0.5 text-[10px] font-mono font-medium text-background">
             <Check className="h-3 w-3" />
             {t("active")}
           </span>
         )}
       </div>
       <div>
-        <div className="text-sm font-semibold text-foreground">{name}</div>
+        <div className="text-xs font-semibold tracking-tight text-foreground">{name}</div>
         <div className="mt-1 text-xs leading-relaxed text-muted-foreground">
           {tagline}
         </div>
       </div>
       <div
-        className="mt-1 flex h-2 overflow-hidden rounded-full"
+        className="mt-1 flex h-1.5 overflow-hidden rounded-[2px] border border-border/40"
         aria-hidden
       >
-        <span className="flex-1" style={{ background: swatch }} />
+        <span className="flex-1 bg-foreground" />
         <span className="w-3 bg-muted-foreground/60" />
         <span className="w-3 bg-muted" />
         <span className="w-3 bg-card" />
