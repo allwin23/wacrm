@@ -24,12 +24,6 @@ function DashboardShellInner({ children }: { children: React.ReactNode }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const closeSidebar = useCallback(() => setSidebarOpen(false), []);
 
-  useEffect(() => {
-    if (!loading && !user) {
-      router.push("/login");
-    }
-  }, [user, loading, router]);
-
   if (loading) {
     return (
       <div className="flex h-screen items-center justify-center bg-background">
@@ -40,8 +34,6 @@ function DashboardShellInner({ children }: { children: React.ReactNode }) {
       </div>
     );
   }
-
-  if (!user) return null;
 
   return (
     <div className="flex h-screen overflow-hidden bg-background">

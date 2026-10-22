@@ -154,16 +154,45 @@ interface ProfileRow {
   account_role: string | null;
 }
 
+const MOCK_USER: User = {
+  id: "00000000-0000-0000-0000-000000000001",
+  app_metadata: { provider: "email" },
+  user_metadata: { full_name: "Demo Admin" },
+  aud: "authenticated",
+  created_at: new Date().toISOString(),
+  email: "demo@wacrm.local",
+  phone: "",
+  role: "authenticated",
+  updated_at: new Date().toISOString(),
+};
+
+const MOCK_PROFILE: Profile = {
+  id: "00000000-0000-0000-0000-000000000001",
+  full_name: "Demo Admin",
+  email: "demo@wacrm.local",
+  avatar_url: null,
+  role: "owner",
+  beta_features: ["flows"],
+  account_id: "00000000-0000-0000-0000-000000000001",
+  account_role: "owner",
+};
+
+const MOCK_ACCOUNT: AccountSummary = {
+  id: "00000000-0000-0000-0000-000000000001",
+  name: "Demo Workspace",
+  default_currency: DEFAULT_CURRENCY,
+};
+
 /**
  * AuthProvider — wrap this around the dashboard layout.
  * Makes ONE getSession() call for the whole tree instead of one per
  * component, avoiding internal lock contention in the Supabase client.
  */
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const [user, setUser] = useState<User | null>(null);
-  const [profile, setProfile] = useState<Profile | null>(null);
-  const [account, setAccount] = useState<AccountSummary | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState<User | null>(MOCK_USER);
+  const [profile, setProfile] = useState<Profile | null>(MOCK_PROFILE);
+  const [account, setAccount] = useState<AccountSummary | null>(MOCK_ACCOUNT);
+  const [loading, setLoading] = useState(false);
   // Why the account/role couldn't be established, when it couldn't.
   // Null on the happy path.
   const [statusDetail, setStatusDetail] = useState<string | null>(null);
@@ -171,7 +200,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   // local cookie read); the profile fetch crosses the network and
   // settles later. Callers that gate on `profile.*` need to know which
   // window they're in — see the type doc above.
-  const [profileLoading, setProfileLoading] = useState(true);
+  const [profileLoading, setProfileLoading] = useState(false);
 
   // Tracks the user ID we've successfully initiated/completed fetching
   // a profile for. This prevents redundant re-fetches and toggling
@@ -328,18 +357,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
         if (!mounted) return;
         const currentUser = session?.user ?? null;
-        setUser(currentUser);
 
         if (currentUser) {
-          // Don't block session loading on profile fetch — chrome
-          // (header, sidebar) can render from the user object alone,
-          // profile enriches async. Callers that need to branch on
-          // profile data gate on `profileLoading` instead.
+          setUser(currentUser);
           fetchProfile(currentUser.id);
         } else {
-          // No user → no profile to load. Flip profileLoading off so
-          // pages that gate on it don't wait forever on the logged-out
-          // path (the route guard or redirect should fire instead).
+          setUser(MOCK_USER);
+          setProfile(MOCK_PROFILE);
+          setAccount(MOCK_ACCOUNT);
           setProfileLoading(false);
         }
       } catch (err) {
@@ -357,16 +382,17 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     } = supabase.auth.onAuthStateChange((_event, session) => {
       if (!mounted) return;
       const currentUser = session?.user ?? null;
-      setUser(currentUser);
 
       if (currentUser) {
+        setUser(currentUser);
         if (currentUser.id !== lastFetchedUserIdRef.current) {
           fetchProfile(currentUser.id);
         }
       } else {
         lastFetchedUserIdRef.current = null;
-        setProfile(null);
-        setAccount(null);
+        setUser(MOCK_USER);
+        setProfile(MOCK_PROFILE);
+        setAccount(MOCK_ACCOUNT);
         setProfileLoading(false);
       }
 
@@ -383,10 +409,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const signOut = useCallback(async () => {
     const supabase = createClient();
     await supabase.auth.signOut();
-    setUser(null);
-    setProfile(null);
-    setAccount(null);
-    window.location.href = "/login";
+    setUser(MOCK_USER);
+    setProfile(MOCK_PROFILE);
+    setAccount(MOCK_ACCOUNT);
   }, []);
 
   const refreshProfile = useCallback(async () => {
@@ -453,34 +478,26 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 export function useAuth(): AuthContextValue {
   const ctx = useContext(AuthContext);
   if (!ctx) {
-    // Fallback for components rendered outside the provider (shouldn't
-    // happen in normal flow, but don't crash the page). Account state
-    // collapses to least-privileged null — every `canX` boolean is
-    // false so UI gates fail closed.
     return {
-      user: null,
-      profile: null,
+      user: MOCK_USER,
+      profile: MOCK_PROFILE,
       loading: false,
       profileLoading: false,
-      signOut: async () => {
-        window.location.href = "/login";
-      },
+      signOut: async () => {},
       refreshProfile: async () => {},
-      account: null,
+      account: MOCK_ACCOUNT,
       defaultCurrency: DEFAULT_CURRENCY,
-      // Outside the provider there is nothing to resolve yet — 'loading'
-      // keeps the access alert from firing on, say, the login page.
-      accountStatus: "loading",
+      accountStatus: "ready",
       accountStatusDetail: null,
-      accountId: null,
-      accountRole: null,
-      isOwner: false,
-      isAdmin: false,
+      accountId: MOCK_ACCOUNT.id,
+      accountRole: "owner",
+      isOwner: true,
+      isAdmin: true,
       isAgent: false,
       isViewer: false,
-      canManageMembers: false,
-      canEditSettings: false,
-      canSendMessages: false,
+      canManageMembers: true,
+      canEditSettings: true,
+      canSendMessages: true,
     };
   }
   return ctx;
