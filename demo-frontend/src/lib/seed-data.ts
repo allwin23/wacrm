@@ -1,11 +1,11 @@
 import { Contact, Conversation, Message, DealStage, Deal, Broadcast, Automation, QuickReply, Template, Tag } from './types'
 
 export const INITIAL_TAGS: Tag[] = [
-  { id: 'tag-1', name: 'VIP', color: '#10b981' },
-  { id: 'tag-2', name: 'Enterprise', color: '#6366f1' },
-  { id: 'tag-3', name: 'Inbound Lead', color: '#f59e0b' },
-  { id: 'tag-4', name: 'Customer', color: '#3b82f6' },
-  { id: 'tag-5', name: 'Partner', color: '#ec4899' },
+  { id: 'tag-1', name: 'VIP', color: '#e4e4e7' },
+  { id: 'tag-2', name: 'Enterprise', color: '#d4d4d8' },
+  { id: 'tag-3', name: 'Inbound Lead', color: '#a1a1aa' },
+  { id: 'tag-4', name: 'Customer', color: '#71717a' },
+  { id: 'tag-5', name: 'Partner', color: '#52525b' },
 ]
 
 export const INITIAL_CONTACTS: Contact[] = [
@@ -338,11 +338,11 @@ export const INITIAL_MESSAGES: Record<string, Message[]> = {
 }
 
 export const INITIAL_STAGES: DealStage[] = [
-  { id: 'stg-1', name: 'New Lead', color: '#71717a', position: 0 },
-  { id: 'stg-2', name: 'Contacted', color: '#3b82f6', position: 1 },
-  { id: 'stg-3', name: 'Proposal Sent', color: '#f59e0b', position: 2 },
-  { id: 'stg-4', name: 'Negotiation', color: '#8b5cf6', position: 3 },
-  { id: 'stg-5', name: 'Won', color: '#10b981', position: 4 },
+  { id: 'stg-1', name: 'New Lead', color: '#52525b', position: 0 },
+  { id: 'stg-2', name: 'Contacted', color: '#71717a', position: 1 },
+  { id: 'stg-3', name: 'Proposal Sent', color: '#a1a1aa', position: 2 },
+  { id: 'stg-4', name: 'Negotiation', color: '#d4d4d8', position: 3 },
+  { id: 'stg-5', name: 'Won', color: '#f4f4f5', position: 4 },
 ]
 
 export const INITIAL_DEALS: Deal[] = [

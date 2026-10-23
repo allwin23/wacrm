@@ -34,32 +34,29 @@ export function Sidebar() {
         {/* Brand / Logo */}
         <div className="p-4 border-b border-[#27272a] flex items-center justify-between">
           <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 font-bold text-sm">
+            <div className="w-7 h-7 rounded-[4px] border border-[#27272a] bg-[#18181b] flex items-center justify-center text-foreground font-mono font-semibold text-xs">
               WA
             </div>
             <div>
-              <div className="font-semibold text-sm tracking-tight text-white flex items-center gap-1.5">
+              <div className="font-semibold text-xs tracking-tight text-white flex items-center gap-1.5 font-mono uppercase">
                 WACRM
-                <span className="text-[10px] uppercase font-mono px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-medium">
+                <span className="text-[9px] uppercase font-mono px-1.5 py-0.5 rounded-[2px] bg-foreground text-background font-medium">
                   DEMO
                 </span>
               </div>
-              <div className="text-[11px] text-[#71717a]">WhatsApp CRM</div>
+              <div className="text-[10px] font-mono text-[#71717a]">WhatsApp CRM</div>
             </div>
           </div>
         </div>
 
         {/* WhatsApp Cloud API Connected Pill */}
         <div className="px-3 pt-3">
-          <div className="p-2.5 rounded-md bg-[#18181b] border border-[#27272a] flex items-center justify-between text-xs">
+          <div className="p-2 rounded-[4px] bg-[#18181b] border border-[#27272a] flex items-center justify-between text-xs font-mono">
             <div className="flex items-center gap-2">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-              </span>
+              <span className="h-1.5 w-1.5 rounded-[1px] bg-foreground" />
               <span className="font-medium text-[#e4e4e7]">+1 (555) 019-8374</span>
             </div>
-            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
+            <CheckCircle2 className="w-3.5 h-3.5 text-foreground" />
           </div>
         </div>
 
@@ -72,22 +69,22 @@ export function Sidebar() {
               <button
                 key={item.id}
                 onClick={() => setActiveTab(item.id)}
-                className={`w-full flex items-center justify-between px-3 py-2 rounded-md text-xs font-medium transition-all ${
+                className={`w-full flex items-center justify-between px-3 py-2 rounded-[4px] text-xs font-medium transition-colors ${
                   isActive
-                    ? 'bg-[#27272a] text-white shadow-sm'
+                    ? 'bg-[#27272a] text-white shadow-none'
                     : 'text-[#a1a1aa] hover:text-white hover:bg-[#18181b]'
                 }`}
               >
                 <div className="flex items-center gap-2.5">
-                  <Icon className={`w-4 h-4 ${isActive ? 'text-emerald-400' : 'text-[#71717a]'}`} />
+                  <Icon className={`w-4 h-4 ${isActive ? 'text-white' : 'text-[#71717a]'}`} />
                   <span>{item.label}</span>
                 </div>
                 {item.badge && (
                   <span
-                    className={`text-[10px] font-mono px-1.5 py-0.2 rounded ${
+                    className={`text-[9px] font-mono px-1.5 py-0.5 rounded-[2px] ${
                       isActive
-                        ? 'bg-emerald-500/20 text-emerald-300'
-                        : 'bg-[#1e1e24] text-[#71717a]'
+                        ? 'bg-foreground text-background font-medium'
+                        : 'bg-[#18181b] text-[#71717a] border border-[#27272a]'
                     }`}
                   >
                     {item.badge}
@@ -101,8 +98,8 @@ export function Sidebar() {
 
       {/* Footer / Reset Data */}
       <div className="p-3 border-t border-[#27272a] space-y-2">
-        <div className="px-2 py-1.5 rounded bg-emerald-500/5 border border-emerald-500/10 text-[11px] text-[#a1a1aa] flex items-center gap-2">
-          <Sparkles className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+        <div className="px-2 py-1.5 rounded-[4px] bg-[#18181b] border border-[#27272a] text-[10px] font-mono text-[#a1a1aa] flex items-center gap-2">
+          <Sparkles className="w-3.5 h-3.5 text-foreground shrink-0" />
           <span>Interactive seed data with real-time simulated replies</span>
         </div>
 
@@ -112,7 +109,7 @@ export function Sidebar() {
               resetToDefault()
             }
           }}
-          className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded text-xs font-medium text-[#a1a1aa] hover:text-white hover:bg-[#18181b] border border-[#27272a] transition-colors"
+          className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-[4px] text-xs font-mono font-medium text-[#a1a1aa] hover:text-white hover:bg-[#18181b] border border-[#27272a] transition-colors"
         >
           <RefreshCw className="w-3.5 h-3.5" />
           <span>Reset Demo Data</span>

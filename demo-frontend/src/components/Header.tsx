@@ -20,11 +20,11 @@ export function Header({ onOpenNewContact, onOpenNewDeal }: { onOpenNewContact?:
   const current = titles[activeTab] || { title: 'WACRM Demo', subtitle: 'WhatsApp CRM' }
 
   return (
-    <header className="h-14 border-b border-[#27272a] bg-[#0d0d0f]/60 backdrop-blur px-6 flex items-center justify-between shrink-0">
+    <header className="h-14 border-b border-[#27272a] bg-[#0d0d0f] px-6 flex items-center justify-between shrink-0">
       <div className="flex items-center gap-3">
         <div>
           <h1 className="text-sm font-semibold text-white tracking-tight">{current.title}</h1>
-          <p className="text-[11px] text-[#71717a] hidden sm:block">{current.subtitle}</p>
+          <p className="text-[11px] font-mono text-[#71717a] hidden sm:block">{current.subtitle}</p>
         </div>
       </div>
 
@@ -32,7 +32,7 @@ export function Header({ onOpenNewContact, onOpenNewDeal }: { onOpenNewContact?:
         {activeTab === 'contacts' && (
           <button
             onClick={onOpenNewContact}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-emerald-500 hover:bg-emerald-600 text-white text-xs font-medium shadow-sm transition-colors"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-[4px] bg-foreground hover:bg-foreground/90 text-background text-xs font-mono font-medium shadow-none transition-colors"
           >
             <Plus className="w-3.5 h-3.5" />
             <span>Add Contact</span>
@@ -42,7 +42,7 @@ export function Header({ onOpenNewContact, onOpenNewDeal }: { onOpenNewContact?:
         {activeTab === 'pipelines' && (
           <button
             onClick={onOpenNewDeal}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-emerald-500 hover:bg-emerald-600 text-white text-xs font-medium shadow-sm transition-colors"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-[4px] bg-foreground hover:bg-foreground/90 text-background text-xs font-mono font-medium shadow-none transition-colors"
           >
             <Plus className="w-3.5 h-3.5" />
             <span>Create Deal</span>
@@ -52,8 +52,8 @@ export function Header({ onOpenNewContact, onOpenNewDeal }: { onOpenNewContact?:
         <div className="h-4 w-[1px] bg-[#27272a] mx-1" />
 
         {/* User Pill */}
-        <div className="flex items-center gap-2 px-2.5 py-1 rounded-full bg-[#18181b] border border-[#27272a] text-xs">
-          <div className="w-5 h-5 rounded-full bg-indigo-500/20 text-indigo-400 font-semibold flex items-center justify-center text-[10px]">
+        <div className="flex items-center gap-2 px-2.5 py-1 rounded-[4px] bg-[#18181b] border border-[#27272a] text-xs font-mono">
+          <div className="w-5 h-5 rounded-[2px] bg-muted border border-border text-foreground font-semibold flex items-center justify-center text-[10px]">
             DA
           </div>
           <span className="text-[#e4e4e7] font-medium hidden sm:inline">Demo Admin</span>

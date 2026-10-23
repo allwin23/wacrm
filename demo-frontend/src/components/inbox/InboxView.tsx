@@ -110,19 +110,19 @@ export function InboxView() {
               placeholder="Search chats or phone..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full bg-[#18181b] border border-[#27272a] rounded-md pl-8 pr-3 py-1.5 text-xs text-white placeholder-[#71717a] focus:outline-none focus:border-emerald-500/50"
+              className="w-full bg-[#18181b] border border-[#27272a] rounded-[4px] pl-8 pr-3 py-1.5 text-xs text-white placeholder-[#71717a] focus:outline-none focus:border-foreground font-mono"
             />
           </div>
 
           {/* Status Tabs */}
-          <div className="flex gap-1 p-0.5 bg-[#18181b] rounded-md border border-[#27272a]">
+          <div className="flex gap-1 p-0.5 bg-[#18181b] rounded-[4px] border border-[#27272a]">
             {(['all', 'open', 'pending', 'closed'] as const).map((tab) => (
               <button
                 key={tab}
                 onClick={() => setFilter(tab)}
-                className={`flex-1 py-1 text-[11px] font-medium capitalize rounded transition-colors ${
+                className={`flex-1 py-1 text-[10px] font-mono uppercase rounded-[2px] transition-colors ${
                   filter === tab
-                    ? 'bg-[#27272a] text-white'
+                    ? 'bg-[#27272a] text-white font-medium'
                     : 'text-[#71717a] hover:text-[#e4e4e7]'
                 }`}
               >
@@ -147,19 +147,19 @@ export function InboxView() {
                   onClick={() => setActiveConversationId(conv.id)}
                   className={`w-full text-left p-3 transition-colors flex items-start gap-3 ${
                     isSelected
-                      ? 'bg-[#18181b] border-l-2 border-l-emerald-500'
+                      ? 'bg-[#18181b] border-l-2 border-l-foreground'
                       : 'hover:bg-[#131316]'
                   }`}
                 >
                   <div className="relative shrink-0">
-                    <div className="w-9 h-9 rounded-full bg-gradient-to-tr from-emerald-600/30 to-teal-400/20 border border-emerald-500/30 flex items-center justify-center text-xs font-semibold text-emerald-300">
+                    <div className="w-9 h-9 rounded-[4px] bg-[#18181b] border border-[#27272a] flex items-center justify-center text-xs font-mono font-medium text-foreground">
                       {conv.contact.name
                         .split(' ')
                         .map((n) => n[0])
                         .join('')}
                     </div>
                     {conv.status === 'open' && (
-                      <span className="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-emerald-500 border-2 border-[#0d0d0f]" />
+                      <span className="absolute bottom-0 right-0 w-2 h-2 rounded-[1px] bg-foreground" />
                     )}
                   </div>
 
@@ -181,14 +181,13 @@ export function InboxView() {
                       {conv.contact.tags.slice(0, 2).map((tag) => (
                         <span
                           key={tag.id}
-                          style={{ borderColor: `${tag.color}40`, color: tag.color }}
-                          className="text-[9px] px-1.5 py-0.2 rounded border bg-[#18181b]"
+                          className="text-[9px] font-mono px-1.5 py-0.5 rounded-[2px] border border-[#27272a] bg-[#18181b] text-foreground"
                         >
                           {tag.name}
                         </span>
                       ))}
                       {conv.unread_count > 0 && (
-                        <span className="ml-auto text-[10px] font-mono px-1.5 py-0.2 rounded-full bg-emerald-500 text-black font-semibold">
+                        <span className="ml-auto text-[9px] font-mono px-1.5 py-0.2 rounded-[2px] bg-foreground text-background font-semibold">
                           {conv.unread_count}
                         </span>
                       )}
@@ -206,31 +205,31 @@ export function InboxView() {
         {activeConv ? (
           <>
             {/* Chat Header */}
-            <div className="h-14 border-b border-[#27272a] bg-[#0d0d0f]/80 px-4 flex items-center justify-between shrink-0">
+            <div className="h-14 border-b border-[#27272a] bg-[#0d0d0f] px-4 flex items-center justify-between shrink-0">
               <div className="flex items-center gap-3">
                 <div className="relative">
-                  <div className="w-8 h-8 rounded-full bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center text-xs font-semibold text-emerald-300">
+                  <div className="w-8 h-8 rounded-[4px] bg-[#18181b] border border-[#27272a] flex items-center justify-center text-xs font-mono font-semibold text-foreground">
                     {activeConv.contact.name
                       .split(' ')
                       .map((n) => n[0])
                       .join('')}
                   </div>
-                  <span className="absolute bottom-0 right-0 w-2 h-2 rounded-full bg-emerald-500" />
+                  <span className="absolute bottom-0 right-0 w-1.5 h-1.5 rounded-[1px] bg-foreground" />
                 </div>
                 <div>
                   <div className="flex items-center gap-1.5">
                     <h2 className="text-xs font-semibold text-white">
                       {activeConv.contact.name}
                     </h2>
-                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
+                    <CheckCircle2 className="w-3.5 h-3.5 text-foreground" />
                     <span className="text-[10px] font-mono text-[#71717a]">
                       {activeConv.contact.phone}
                     </span>
                   </div>
-                  <div className="text-[10px] text-[#71717a] flex items-center gap-2">
+                  <div className="text-[10px] font-mono text-[#71717a] flex items-center gap-2">
                     <span>
                       {isTyping ? (
-                        <span className="text-emerald-400 animate-pulse font-medium">
+                        <span className="text-foreground animate-pulse font-medium">
                           typing...
                         </span>
                       ) : (
@@ -244,16 +243,16 @@ export function InboxView() {
               </div>
 
               <div className="flex items-center gap-2">
-                <span className="text-[10px] uppercase font-mono px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-medium">
+                <span className="text-[9px] uppercase font-mono px-1.5 py-0.5 rounded-[2px] bg-foreground text-background font-medium">
                   {activeConv.status}
                 </span>
               </div>
             </div>
 
             {/* Chat Messages */}
-            <div className="flex-1 overflow-y-auto p-4 space-y-3 bg-[radial-gradient(#1f1f23_1px,transparent_1px)] [background-size:16px_16px]">
+            <div className="flex-1 overflow-y-auto p-4 space-y-3 bg-[#09090b]">
               <div className="flex justify-center my-2">
-                <span className="text-[10px] font-mono text-[#71717a] bg-[#18181b] px-2.5 py-0.5 rounded-full border border-[#27272a]">
+                <span className="text-[10px] font-mono text-[#71717a] bg-[#18181b] px-2.5 py-0.5 rounded-[3px] border border-[#27272a]">
                   WhatsApp End-to-End Encrypted Session
                 </span>
               </div>
@@ -266,20 +265,18 @@ export function InboxView() {
                     className={`flex flex-col ${isAgent ? 'items-end' : 'items-start'}`}
                   >
                     <div
-                      className={`max-w-[70%] rounded-lg p-3 text-xs leading-relaxed shadow-sm ${
+                      className={`max-w-[70%] rounded-[4px] p-3 text-xs leading-relaxed shadow-none ${
                         isAgent
-                          ? 'bg-emerald-950/40 border border-emerald-600/30 text-emerald-50 rounded-br-none'
-                          : 'bg-[#18181b] border border-[#27272a] text-[#f4f4f5] rounded-bl-none'
+                          ? 'bg-[#222226] border border-[#2e2e33] text-foreground'
+                          : 'bg-[#18181b] border border-[#27272a] text-[#f4f4f5]'
                       }`}
                     >
                       <p>{msg.content_text}</p>
                       <div
-                        className={`flex items-center gap-1 mt-1.5 text-[9px] font-mono justify-end ${
-                          isAgent ? 'text-emerald-400/80' : 'text-[#71717a]'
-                        }`}
+                        className="flex items-center gap-1 mt-1.5 text-[9px] font-mono justify-end text-[#71717a]"
                       >
                         <span>{msg.created_at}</span>
-                        {isAgent && <CheckCheck className="w-3.5 h-3.5 text-emerald-400" />}
+                        {isAgent && <CheckCheck className="w-3.5 h-3.5 text-foreground" />}
                       </div>
                     </div>
                   </div>
@@ -287,14 +284,14 @@ export function InboxView() {
               })}
 
               {isTyping && (
-                <div className="flex items-center gap-1.5 text-xs text-[#71717a] p-2 bg-[#18181b] w-fit rounded-md border border-[#27272a]">
-                  <span className="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-bounce" />
+                <div className="flex items-center gap-1.5 text-xs text-[#71717a] p-2 bg-[#18181b] w-fit rounded-[3px] border border-[#27272a]">
+                  <span className="w-1.5 h-1.5 bg-foreground rounded-[0.5px] animate-bounce" />
                   <span
-                    className="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-bounce"
+                    className="w-1.5 h-1.5 bg-foreground rounded-[0.5px] animate-bounce"
                     style={{ animationDelay: '0.2s' }}
                   />
                   <span
-                    className="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-bounce"
+                    className="w-1.5 h-1.5 bg-foreground rounded-[0.5px] animate-bounce"
                     style={{ animationDelay: '0.4s' }}
                   />
                 </div>
@@ -320,12 +317,12 @@ export function InboxView() {
                     <button
                       key={qr.id}
                       onClick={() => applyQuickReply(qr.content)}
-                      className="w-full text-left p-1.5 rounded hover:bg-[#1e1e24] text-xs text-[#e4e4e7] flex items-center gap-2 border border-transparent hover:border-[#27272a]"
+                      className="w-full text-left p-1.5 rounded-[3px] hover:bg-[#18181b] text-xs text-[#e4e4e7] flex items-center gap-2 border border-transparent hover:border-[#27272a]"
                     >
-                      <span className="font-mono text-emerald-400 text-[10px]">
+                      <span className="font-mono text-foreground text-[10px]">
                         {qr.shortcut}
                       </span>
-                      <span className="truncate text-[11px] text-[#a1a1aa]">
+                      <span className="truncate text-[11px] font-mono text-[#a1a1aa]">
                         {qr.content}
                       </span>
                     </button>
@@ -336,8 +333,8 @@ export function InboxView() {
 
             {showTemplates && (
               <div className="px-4 py-2 border-t border-[#27272a] bg-[#121214] max-h-40 overflow-y-auto">
-                <div className="text-[11px] font-medium text-[#71717a] mb-1.5 flex items-center justify-between">
-                  <span>Meta Approved Templates</span>
+                <div className="text-[11px] font-mono text-[#71717a] mb-1.5 flex items-center justify-between">
+                  <span>META APPROVED TEMPLATES</span>
                   <button
                     onClick={() => setShowTemplates(false)}
                     className="hover:text-white"
@@ -350,12 +347,12 @@ export function InboxView() {
                     <button
                       key={tpl.id}
                       onClick={() => applyTemplate(tpl.body_text)}
-                      className="w-full text-left p-1.5 rounded hover:bg-[#1e1e24] text-xs text-[#e4e4e7] border border-transparent hover:border-[#27272a]"
+                      className="w-full text-left p-1.5 rounded-[3px] hover:bg-[#18181b] text-xs text-[#e4e4e7] border border-transparent hover:border-[#27272a]"
                     >
-                      <div className="font-semibold text-emerald-400 text-[10px]">
+                      <div className="font-mono font-medium text-foreground text-[10px]">
                         {tpl.name} • {tpl.category}
                       </div>
-                      <div className="truncate text-[11px] text-[#a1a1aa]">
+                      <div className="truncate text-[11px] font-mono text-[#a1a1aa]">
                         {tpl.body_text}
                       </div>
                     </button>
@@ -373,9 +370,9 @@ export function InboxView() {
                     setShowQuickReplies(!showQuickReplies)
                     setShowTemplates(false)
                   }}
-                  className="flex items-center gap-1 px-2 py-1 rounded text-[11px] text-[#a1a1aa] hover:text-white bg-[#18181b] border border-[#27272a]"
+                  className="flex items-center gap-1 px-2 py-1 rounded-[3px] text-[11px] font-mono text-[#a1a1aa] hover:text-white bg-[#18181b] border border-[#27272a]"
                 >
-                  <Zap className="w-3 h-3 text-amber-400" />
+                  <Zap className="w-3 h-3 text-foreground" />
                   <span>Quick Replies</span>
                 </button>
 
@@ -385,9 +382,9 @@ export function InboxView() {
                     setShowTemplates(!showTemplates)
                     setShowQuickReplies(false)
                   }}
-                  className="flex items-center gap-1 px-2 py-1 rounded text-[11px] text-[#a1a1aa] hover:text-white bg-[#18181b] border border-[#27272a]"
+                  className="flex items-center gap-1 px-2 py-1 rounded-[3px] text-[11px] font-mono text-[#a1a1aa] hover:text-white bg-[#18181b] border border-[#27272a]"
                 >
-                  <Sparkles className="w-3 h-3 text-emerald-400" />
+                  <Sparkles className="w-3 h-3 text-foreground" />
                   <span>Templates</span>
                 </button>
               </div>
@@ -398,12 +395,12 @@ export function InboxView() {
                   placeholder="Type a WhatsApp message or type /for quick replies..."
                   value={inputText}
                   onChange={(e) => setInputText(e.target.value)}
-                  className="flex-1 bg-[#18181b] border border-[#27272a] rounded-md px-3 py-2 text-xs text-white placeholder-[#71717a] focus:outline-none focus:border-emerald-500/50"
+                  className="flex-1 bg-[#18181b] border border-[#27272a] rounded-[4px] px-3 py-2 text-xs text-white placeholder-[#71717a] focus:outline-none focus:border-foreground"
                 />
                 <button
                   type="submit"
                   disabled={!inputText.trim()}
-                  className="px-3 py-2 rounded-md bg-emerald-500 hover:bg-emerald-600 disabled:opacity-40 disabled:hover:bg-emerald-500 text-white text-xs font-medium flex items-center gap-1.5 transition-colors shadow-sm"
+                  className="px-3.5 py-2 rounded-[4px] bg-foreground hover:bg-foreground/90 disabled:opacity-40 text-background text-xs font-mono font-medium flex items-center gap-1.5 transition-colors shadow-none"
                 >
                   <Send className="w-3.5 h-3.5" />
                   <span>Send</span>
@@ -412,7 +409,7 @@ export function InboxView() {
             </div>
           </>
         ) : (
-          <div className="flex-1 flex items-center justify-center text-xs text-[#71717a]">
+          <div className="flex-1 flex items-center justify-center text-xs font-mono text-[#71717a]">
             Select a conversation to begin chatting
           </div>
         )}
@@ -422,7 +419,7 @@ export function InboxView() {
       {activeConv && (
         <div className="w-72 border-l border-[#27272a] bg-[#0d0d0f] flex flex-col shrink-0 overflow-y-auto p-4 space-y-4">
           <div className="text-center pb-4 border-b border-[#27272a]">
-            <div className="w-14 h-14 rounded-full bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center text-base font-bold text-emerald-300 mx-auto mb-2">
+            <div className="w-14 h-14 rounded-[4px] bg-[#18181b] border border-[#27272a] flex items-center justify-center text-sm font-mono font-semibold text-foreground mx-auto mb-2">
               {activeConv.contact.name
                 .split(' ')
                 .map((n) => n[0])
@@ -471,8 +468,7 @@ export function InboxView() {
               {activeConv.contact.tags.map((tag) => (
                 <span
                   key={tag.id}
-                  style={{ borderColor: `${tag.color}40`, color: tag.color }}
-                  className="text-[10px] px-2 py-0.5 rounded border bg-[#18181b]"
+                  className="text-[10px] font-mono px-2 py-0.5 rounded-[3px] border border-[#27272a] bg-[#18181b] text-foreground"
                 >
                   {tag.name}
                 </span>
@@ -486,21 +482,21 @@ export function InboxView() {
               Pipeline Deal
             </span>
             {activeDeal ? (
-              <div className="p-2.5 rounded-md bg-[#18181b] border border-[#27272a] space-y-1">
+              <div className="p-2.5 rounded-[4px] bg-[#18181b] border border-[#27272a] space-y-1">
                 <div className="text-xs font-medium text-white truncate">
                   {activeDeal.title}
                 </div>
                 <div className="flex items-center justify-between text-xs">
-                  <span className="text-emerald-400 font-mono font-semibold">
+                  <span className="text-foreground font-mono font-semibold">
                     ${activeDeal.value.toLocaleString()}
                   </span>
-                  <span className="text-[10px] text-[#71717a] capitalize">
+                  <span className="text-[10px] font-mono text-[#71717a] uppercase">
                     {activeDeal.status}
                   </span>
                 </div>
               </div>
             ) : (
-              <div className="text-[11px] text-[#71717a] italic">
+              <div className="text-[11px] font-mono text-[#71717a] italic">
                 No open deal for this contact
               </div>
             )}
@@ -511,7 +507,7 @@ export function InboxView() {
             <span className="text-[10px] font-mono uppercase text-[#71717a]">
               Internal Notes
             </span>
-            <p className="text-[11px] text-[#a1a1aa] bg-[#18181b] p-2.5 rounded-md border border-[#27272a] leading-relaxed">
+            <p className="text-[11px] font-mono text-[#a1a1aa] bg-[#18181b] p-2.5 rounded-[4px] border border-[#27272a] leading-relaxed">
               {activeConv.contact.notes || 'No notes added yet.'}
             </p>
           </div>

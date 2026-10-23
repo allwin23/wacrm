@@ -30,15 +30,15 @@ export function BroadcastsView() {
       {/* Top Banner & Stats */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
-          <h2 className="text-base font-semibold text-white">WhatsApp Broadcast Campaigns</h2>
-          <p className="text-xs text-[#71717a]">
+          <h2 className="text-sm font-mono font-semibold uppercase tracking-wider text-white">WhatsApp Broadcast Campaigns</h2>
+          <p className="text-xs font-mono text-[#71717a]">
             Deliver bulk notifications via approved Meta message templates without risk of number bans
           </p>
         </div>
 
         <button
           onClick={() => setIsModalOpen(true)}
-          className="flex items-center gap-1.5 px-3.5 py-2 rounded-md bg-emerald-500 hover:bg-emerald-600 text-white text-xs font-medium shadow-sm transition-colors"
+          className="flex items-center gap-1.5 px-3 py-1.5 rounded-[4px] bg-foreground hover:bg-foreground/90 text-background text-xs font-mono font-medium shadow-none transition-colors"
         >
           <Plus className="w-3.5 h-3.5" />
           <span>New Broadcast</span>
@@ -56,7 +56,7 @@ export function BroadcastsView() {
           return (
             <div
               key={bc.id}
-              className="p-4 rounded-lg bg-[#121214] border border-[#27272a] shadow-sm space-y-3"
+              className="p-4 rounded-[4px] bg-[#121214] border border-[#27272a] shadow-none space-y-3"
             >
               <div className="flex items-start justify-between">
                 <div>
@@ -65,42 +65,34 @@ export function BroadcastsView() {
                     Template: {bc.template_name}
                   </span>
                 </div>
-                <span
-                  className={`text-[10px] font-mono px-2 py-0.5 rounded capitalize font-medium ${
-                    bc.status === 'sent'
-                      ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20'
-                      : bc.status === 'sending'
-                      ? 'bg-amber-500/10 text-amber-400 border border-amber-500/20 animate-pulse'
-                      : 'bg-[#27272a] text-[#a1a1aa]'
-                  }`}
-                >
+                <span className="text-[9px] font-mono uppercase tracking-wider px-2 py-0.5 rounded-[2px] border border-[#27272a] bg-[#18181b] text-foreground">
                   {bc.status}
                 </span>
               </div>
 
               {/* Delivery Stats Bar */}
-              <div className="grid grid-cols-3 gap-2 p-2.5 rounded bg-[#18181b] border border-[#27272a] text-center text-xs">
+              <div className="grid grid-cols-3 gap-2 p-2.5 rounded-[3px] bg-[#18181b] border border-[#27272a] text-center text-xs">
                 <div>
-                  <span className="text-[10px] text-[#71717a] block">Target Audience</span>
+                  <span className="text-[10px] font-mono uppercase text-[#71717a] block">Target</span>
                   <span className="font-mono font-semibold text-white">
                     {bc.total_recipients.toLocaleString()}
                   </span>
                 </div>
                 <div>
-                  <span className="text-[10px] text-[#71717a] block">Delivered</span>
-                  <span className="font-mono font-semibold text-emerald-400">
+                  <span className="text-[10px] font-mono uppercase text-[#71717a] block">Delivered</span>
+                  <span className="font-mono font-semibold text-foreground">
                     {bc.delivered_count.toLocaleString()}
                   </span>
                 </div>
                 <div>
-                  <span className="text-[10px] text-[#71717a] block">Read Rate</span>
-                  <span className="font-mono font-semibold text-sky-400">{readRate}%</span>
+                  <span className="text-[10px] font-mono uppercase text-[#71717a] block">Read Rate</span>
+                  <span className="font-mono font-semibold text-foreground">{readRate}%</span>
                 </div>
               </div>
 
-              <div className="flex items-center justify-between text-[11px] text-[#71717a]">
-                <span className="flex items-center gap-1">
-                  <CheckCircle2 className="w-3 h-3 text-emerald-400" />
+              <div className="flex items-center justify-between text-[11px] font-mono text-[#71717a]">
+                <span className="flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-[0.5px] bg-foreground/60" />
                   Meta Webhook verified
                 </span>
                 <span className="font-mono">Created {new Date(bc.created_at).toLocaleDateString()}</span>
@@ -112,13 +104,13 @@ export function BroadcastsView() {
 
       {/* New Broadcast Modal */}
       {isModalOpen && (
-        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="w-full max-w-md bg-[#121214] border border-[#27272a] rounded-lg p-5 shadow-xl space-y-4">
+        <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4">
+          <div className="w-full max-w-md bg-[#121214] border border-[#27272a] rounded-[4px] p-5 shadow-none space-y-4">
             <div className="flex items-center justify-between pb-3 border-b border-[#27272a]">
-              <h3 className="text-sm font-semibold text-white">Schedule New Broadcast</h3>
+              <h3 className="text-xs font-mono uppercase tracking-wider text-white">Schedule New Broadcast</h3>
               <button
                 onClick={() => setIsModalOpen(false)}
-                className="text-[#71717a] hover:text-white text-xs"
+                className="text-[#71717a] hover:text-white text-xs font-mono"
               >
                 ✕
               </button>
@@ -126,7 +118,7 @@ export function BroadcastsView() {
 
             <form onSubmit={handleCreate} className="space-y-3">
               <div>
-                <label className="block text-[11px] font-medium text-[#a1a1aa] mb-1">
+                <label className="block text-[10px] font-mono uppercase text-[#71717a] mb-1">
                   Campaign Title *
                 </label>
                 <input
@@ -135,18 +127,18 @@ export function BroadcastsView() {
                   placeholder="e.g. November Product Launch"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="w-full bg-[#18181b] border border-[#27272a] rounded px-3 py-1.5 text-xs text-white focus:outline-none focus:border-emerald-500"
+                  className="w-full bg-[#18181b] border border-[#27272a] rounded-[3px] px-3 py-1.5 text-xs font-mono text-white placeholder-[#71717a] focus:outline-none focus:border-foreground"
                 />
               </div>
 
               <div>
-                <label className="block text-[11px] font-medium text-[#a1a1aa] mb-1">
+                <label className="block text-[10px] font-mono uppercase text-[#71717a] mb-1">
                   Meta Message Template
                 </label>
                 <select
                   value={templateName}
                   onChange={(e) => setTemplateName(e.target.value)}
-                  className="w-full bg-[#18181b] border border-[#27272a] rounded px-3 py-1.5 text-xs text-white focus:outline-none focus:border-emerald-500"
+                  className="w-full bg-[#18181b] border border-[#27272a] rounded-[3px] px-3 py-1.5 text-xs font-mono text-white focus:outline-none focus:border-foreground"
                 >
                   {templates.map((t) => (
                     <option key={t.id} value={t.name}>
@@ -157,7 +149,7 @@ export function BroadcastsView() {
               </div>
 
               <div>
-                <label className="block text-[11px] font-medium text-[#a1a1aa] mb-1">
+                <label className="block text-[10px] font-mono uppercase text-[#71717a] mb-1">
                   Recipient Audience Size
                 </label>
                 <input
@@ -165,7 +157,7 @@ export function BroadcastsView() {
                   required
                   value={recipients}
                   onChange={(e) => setRecipients(e.target.value)}
-                  className="w-full bg-[#18181b] border border-[#27272a] rounded px-3 py-1.5 text-xs text-white focus:outline-none focus:border-emerald-500"
+                  className="w-full bg-[#18181b] border border-[#27272a] rounded-[3px] px-3 py-1.5 text-xs font-mono text-white placeholder-[#71717a] focus:outline-none focus:border-foreground"
                 />
               </div>
 
@@ -173,13 +165,13 @@ export function BroadcastsView() {
                 <button
                   type="button"
                   onClick={() => setIsModalOpen(false)}
-                  className="px-3 py-1.5 text-xs text-[#a1a1aa] hover:text-white"
+                  className="px-3 py-1.5 text-xs font-mono text-[#a1a1aa] hover:text-white"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="px-4 py-1.5 rounded bg-emerald-500 hover:bg-emerald-600 text-white text-xs font-medium"
+                  className="px-4 py-1.5 rounded-[4px] bg-foreground hover:bg-foreground/90 text-background text-xs font-mono font-medium shadow-none transition-colors"
                 >
                   Schedule Broadcast
                 </button>

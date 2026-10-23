@@ -83,13 +83,13 @@ export function ContactsView({
             placeholder="Search contacts, phone, company..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full bg-[#121214] border border-[#27272a] rounded-md pl-9 pr-3 py-2 text-xs text-white placeholder-[#71717a] focus:outline-none focus:border-emerald-500/50"
+            className="w-full bg-[#121214] border border-[#27272a] rounded-[4px] pl-9 pr-3 py-2 text-xs font-mono text-white placeholder-[#71717a] focus:outline-none focus:border-foreground"
           />
         </div>
 
         <button
           onClick={() => setIsAddModalOpen(true)}
-          className="w-full sm:w-auto flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-md bg-emerald-500 hover:bg-emerald-600 text-white text-xs font-medium shadow-sm transition-colors"
+          className="w-full sm:w-auto flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-[4px] bg-foreground hover:bg-foreground/90 text-background text-xs font-mono font-medium shadow-none transition-colors"
         >
           <Plus className="w-3.5 h-3.5" />
           <span>New Contact</span>
@@ -97,9 +97,9 @@ export function ContactsView({
       </div>
 
       {/* Contacts Table */}
-      <div className="rounded-lg border border-[#27272a] bg-[#121214] overflow-hidden">
+      <div className="rounded-[4px] border border-[#27272a] bg-[#121214] overflow-hidden">
         <table className="w-full text-left text-xs">
-          <thead className="bg-[#18181b] border-b border-[#27272a] text-[#71717a]">
+          <thead className="bg-[#18181b] border-b border-[#27272a] text-[#71717a] font-mono text-[10px] uppercase tracking-wider">
             <tr>
               <th className="py-3 px-4 font-medium">Contact</th>
               <th className="py-3 px-4 font-medium">WhatsApp Number</th>
@@ -113,7 +113,7 @@ export function ContactsView({
               <tr key={contact.id} className="hover:bg-[#18181b]/50 transition-colors">
                 <td className="py-3 px-4">
                   <div className="flex items-center gap-3">
-                    <div className="w-7 h-7 rounded-full bg-emerald-500/20 text-emerald-300 font-semibold flex items-center justify-center text-[11px] shrink-0">
+                    <div className="w-6 h-6 rounded-[3px] bg-[#18181b] border border-[#27272a] text-foreground font-mono font-semibold flex items-center justify-center text-[10px] shrink-0">
                       {contact.name
                         .split(' ')
                         .map((n) => n[0])
@@ -122,7 +122,7 @@ export function ContactsView({
                     <div>
                       <div className="font-medium text-white">{contact.name}</div>
                       {contact.email && (
-                        <div className="text-[11px] text-[#71717a]">{contact.email}</div>
+                        <div className="text-[11px] font-mono text-[#71717a]">{contact.email}</div>
                       )}
                     </div>
                   </div>
@@ -139,8 +139,7 @@ export function ContactsView({
                     {contact.tags.map((tag) => (
                       <span
                         key={tag.id}
-                        style={{ borderColor: `${tag.color}40`, color: tag.color }}
-                        className="text-[10px] px-1.5 py-0.2 rounded border bg-[#18181b]"
+                        className="text-[10px] font-mono px-1.5 py-0.5 rounded-[2px] border border-[#27272a] bg-[#18181b] text-foreground"
                       >
                         {tag.name}
                       </span>
@@ -151,9 +150,9 @@ export function ContactsView({
                 <td className="py-3 px-4 text-right">
                   <button
                     onClick={() => handleOpenChat(contact.id)}
-                    className="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-[#18181b] hover:bg-emerald-500 hover:text-white border border-[#27272a] text-[#e4e4e7] text-[11px] transition-colors"
+                    className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-[3px] bg-[#18181b] hover:bg-foreground hover:text-background border border-[#27272a] text-foreground text-[11px] font-mono transition-colors group"
                   >
-                    <MessageSquare className="w-3 h-3 text-emerald-400 group-hover:text-white" />
+                    <MessageSquare className="w-3 h-3 text-[#71717a] group-hover:text-background" />
                     <span>Chat</span>
                   </button>
                 </td>
@@ -165,13 +164,13 @@ export function ContactsView({
 
       {/* Add Contact Modal */}
       {isAddModalOpen && (
-        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="w-full max-w-md bg-[#121214] border border-[#27272a] rounded-lg p-5 shadow-xl space-y-4">
+        <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4">
+          <div className="w-full max-w-md bg-[#121214] border border-[#27272a] rounded-[4px] p-5 shadow-none space-y-4">
             <div className="flex items-center justify-between pb-3 border-b border-[#27272a]">
-              <h3 className="text-sm font-semibold text-white">Add New WhatsApp Contact</h3>
+              <h3 className="text-xs font-mono uppercase tracking-wider text-white">Add New WhatsApp Contact</h3>
               <button
                 onClick={() => setIsAddModalOpen(false)}
-                className="text-[#71717a] hover:text-white text-xs"
+                className="text-[#71717a] hover:text-white text-xs font-mono"
               >
                 ✕
               </button>
@@ -179,7 +178,7 @@ export function ContactsView({
 
             <form onSubmit={handleCreateContact} className="space-y-3">
               <div>
-                <label className="block text-[11px] font-medium text-[#a1a1aa] mb-1">
+                <label className="block text-[10px] font-mono uppercase text-[#71717a] mb-1">
                   Full Name *
                 </label>
                 <input
@@ -188,12 +187,12 @@ export function ContactsView({
                   placeholder="e.g. Jordan Hayes"
                   value={newName}
                   onChange={(e) => setNewName(e.target.value)}
-                  className="w-full bg-[#18181b] border border-[#27272a] rounded px-3 py-1.5 text-xs text-white focus:outline-none focus:border-emerald-500"
+                  className="w-full bg-[#18181b] border border-[#27272a] rounded-[3px] px-3 py-1.5 text-xs font-mono text-white placeholder-[#71717a] focus:outline-none focus:border-foreground"
                 />
               </div>
 
               <div>
-                <label className="block text-[11px] font-medium text-[#a1a1aa] mb-1">
+                <label className="block text-[10px] font-mono uppercase text-[#71717a] mb-1">
                   WhatsApp Phone (with Country Code) *
                 </label>
                 <input
@@ -202,12 +201,12 @@ export function ContactsView({
                   placeholder="+1 (555) 987-6543"
                   value={newPhone}
                   onChange={(e) => setNewPhone(e.target.value)}
-                  className="w-full bg-[#18181b] border border-[#27272a] rounded px-3 py-1.5 text-xs text-white focus:outline-none focus:border-emerald-500"
+                  className="w-full bg-[#18181b] border border-[#27272a] rounded-[3px] px-3 py-1.5 text-xs font-mono text-white placeholder-[#71717a] focus:outline-none focus:border-foreground"
                 />
               </div>
 
               <div>
-                <label className="block text-[11px] font-medium text-[#a1a1aa] mb-1">
+                <label className="block text-[10px] font-mono uppercase text-[#71717a] mb-1">
                   Email Address
                 </label>
                 <input
@@ -215,12 +214,12 @@ export function ContactsView({
                   placeholder="jordan@company.com"
                   value={newEmail}
                   onChange={(e) => setNewEmail(e.target.value)}
-                  className="w-full bg-[#18181b] border border-[#27272a] rounded px-3 py-1.5 text-xs text-white focus:outline-none focus:border-emerald-500"
+                  className="w-full bg-[#18181b] border border-[#27272a] rounded-[3px] px-3 py-1.5 text-xs font-mono text-white placeholder-[#71717a] focus:outline-none focus:border-foreground"
                 />
               </div>
 
               <div>
-                <label className="block text-[11px] font-medium text-[#a1a1aa] mb-1">
+                <label className="block text-[10px] font-mono uppercase text-[#71717a] mb-1">
                   Company Name
                 </label>
                 <input
@@ -228,7 +227,7 @@ export function ContactsView({
                   placeholder="Acme Corp"
                   value={newCompany}
                   onChange={(e) => setNewCompany(e.target.value)}
-                  className="w-full bg-[#18181b] border border-[#27272a] rounded px-3 py-1.5 text-xs text-white focus:outline-none focus:border-emerald-500"
+                  className="w-full bg-[#18181b] border border-[#27272a] rounded-[3px] px-3 py-1.5 text-xs font-mono text-white placeholder-[#71717a] focus:outline-none focus:border-foreground"
                 />
               </div>
 
@@ -236,13 +235,13 @@ export function ContactsView({
                 <button
                   type="button"
                   onClick={() => setIsAddModalOpen(false)}
-                  className="px-3 py-1.5 text-xs text-[#a1a1aa] hover:text-white"
+                  className="px-3 py-1.5 text-xs font-mono text-[#a1a1aa] hover:text-white"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="px-4 py-1.5 rounded bg-emerald-500 hover:bg-emerald-600 text-white text-xs font-medium"
+                  className="px-4 py-1.5 rounded-[4px] bg-foreground hover:bg-foreground/90 text-background text-xs font-mono font-medium shadow-none transition-colors"
                 >
                   Save & Open Chat
                 </button>
