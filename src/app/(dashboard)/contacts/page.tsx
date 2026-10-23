@@ -412,7 +412,7 @@ export default function ContactsPage() {
               <Filter className="size-4" />
               {t('filterByTags')}
               {selectedTagIds.length > 0 && (
-                <span className="ml-1 inline-flex items-center justify-center rounded-full bg-primary px-1.5 text-[10px] font-semibold text-primary-foreground">
+                <span className="ml-1 inline-flex items-center justify-center rounded-[2px] bg-foreground px-1.5 font-mono text-[9px] text-background">
                   {selectedTagIds.length}
                 </span>
               )}
@@ -425,7 +425,7 @@ export default function ContactsPage() {
                 {selectedTagIds.length > 0 && (
                   <button
                     onClick={clearTagFilters}
-                    className="text-xs text-muted-foreground hover:text-foreground"
+                    className="font-mono text-xs text-muted-foreground hover:text-foreground"
                   >
                     {t('clearAll')}
                   </button>
@@ -440,18 +440,15 @@ export default function ContactsPage() {
                   {allTags.map((tag) => (
                     <label
                       key={tag.id}
-                      className="flex items-center gap-2.5 px-3 py-1.5 cursor-pointer hover:bg-muted/50"
+                      className="flex items-center gap-2.5 px-3 py-1.5 cursor-pointer hover:bg-muted/50 font-mono text-xs"
                     >
                       <Checkbox
                         checked={selectedTagIds.includes(tag.id)}
                         onCheckedChange={() => toggleTagFilter(tag.id)}
                         aria-label={`Filter by ${tag.name}`}
                       />
-                      <span
-                        className="size-2.5 shrink-0 rounded-full"
-                        style={{ backgroundColor: tag.color }}
-                      />
-                      <span className="text-sm text-popover-foreground truncate">
+                      <span className="size-1.5 shrink-0 rounded-[1px] bg-foreground/60" />
+                      <span className="truncate text-popover-foreground">
                         {tag.name}
                       </span>
                     </label>
@@ -471,11 +468,7 @@ export default function ContactsPage() {
               return (
                 <span
                   key={id}
-                  className="inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[11px] font-medium"
-                  style={{
-                    backgroundColor: tag.color + '20',
-                    color: tag.color,
-                  }}
+                  className="inline-flex items-center gap-1 rounded-[4px] border border-border bg-muted/60 px-2 py-0.5 font-mono text-[10px] text-foreground"
                 >
                   {tag.name}
                   <button
@@ -618,11 +611,7 @@ export default function ContactsPage() {
                         contact.tags.slice(0, 3).map((tag) => (
                           <span
                             key={tag.id}
-                            className="inline-flex items-center rounded-full px-2 py-0.5 text-[10px] font-medium"
-                            style={{
-                              backgroundColor: tag.color + '20',
-                              color: tag.color,
-                            }}
+                            className="inline-flex items-center rounded-[3px] border border-border bg-muted/50 px-1.5 py-0.5 font-mono text-[10px] text-foreground"
                           >
                             {tag.name}
                           </span>
@@ -631,7 +620,7 @@ export default function ContactsPage() {
                         <span className="text-muted-foreground text-xs">-</span>
                       )}
                       {contact.tags && contact.tags.length > 3 && (
-                        <span className="text-[10px] text-muted-foreground">
+                        <span className="font-mono text-[10px] text-muted-foreground">
                           +{contact.tags.length - 3}
                         </span>
                       )}

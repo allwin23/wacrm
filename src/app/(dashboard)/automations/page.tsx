@@ -180,7 +180,7 @@ export default function AutomationsPage() {
 
       {showTemplates && (
         <section>
-          <h2 className="mb-3 text-sm font-semibold text-muted-foreground">{t("templatesTitle")}</h2>
+          <h2 className="mb-3 text-xs font-mono uppercase tracking-wider text-muted-foreground">{t("templatesTitle")}</h2>
           <div className="grid grid-cols-1 gap-3 md:grid-cols-2 xl:grid-cols-4">
             {TEMPLATE_ORDER.map((slug) => {
               const t = AUTOMATION_TEMPLATES[slug]
@@ -189,12 +189,12 @@ export default function AutomationsPage() {
                 <button
                   key={slug}
                   onClick={() => startFromTemplate(slug)}
-                  className="group flex flex-col items-start rounded-xl border border-border bg-card p-4 text-left transition-colors hover:border-primary/50 hover:bg-card/80"
+                  className="group flex flex-col items-start rounded-[4px] border border-border bg-card p-4 text-left transition-colors hover:border-foreground/40 hover:bg-muted/20"
                 >
-                  <div className="mb-3 flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10 text-primary group-hover:bg-primary/15">
-                    <Icon className="h-5 w-5" />
+                  <div className="mb-3 flex h-8 w-8 items-center justify-center rounded-[3px] border border-border bg-muted/40 text-foreground group-hover:bg-muted">
+                    <Icon className="h-4 w-4" />
                   </div>
-                  <div className="text-sm font-semibold text-foreground">{t.name}</div>
+                  <div className="text-sm font-medium text-foreground">{t.name}</div>
                   <p className="mt-1 text-xs text-muted-foreground">{t.description}</p>
                 </button>
               )
@@ -204,9 +204,9 @@ export default function AutomationsPage() {
       )}
 
       {automations.length === 0 ? (
-        <div className="flex h-48 flex-col items-center justify-center rounded-xl border border-dashed border-border bg-card/40">
-          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10">
-            <Zap className="h-6 w-6 text-primary" />
+        <div className="flex h-48 flex-col items-center justify-center rounded-[4px] border border-dashed border-border bg-card">
+          <div className="flex h-10 w-10 items-center justify-center rounded-[4px] border border-border bg-muted/50">
+            <Zap className="h-5 w-5 text-foreground" />
           </div>
           <p className="mt-3 text-sm font-medium text-foreground">{t("emptyTitle")}</p>
           <p className="mt-1 text-xs text-muted-foreground">
@@ -285,13 +285,13 @@ function AutomationCard({
     ? tTriggers(`${automation.trigger_type}.label`)
     : automation.trigger_type
   return (
-    <li className="rounded-[8px] border border-border bg-card transition-colors hover:border-foreground/20">
+    <li className="rounded-[4px] border border-border bg-card transition-colors hover:border-foreground/40">
       <div className="flex items-center gap-3.5 p-3.5">
         <div
-          className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-[6px] border border-border bg-muted/60 text-foreground"
+          className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-[3px] border border-border bg-muted/60 text-foreground"
           aria-hidden
         >
-          <Zap className="h-4 w-4" />
+          <Zap className="h-3.5 w-3.5" />
         </div>
 
         <button
@@ -300,11 +300,11 @@ function AutomationCard({
           className="min-w-0 flex-1 text-left"
         >
           <div className="flex items-center gap-2">
-            <span className="truncate text-sm font-semibold tracking-tight text-foreground">
+            <span className="truncate text-xs font-medium text-foreground">
               {automation.name}
             </span>
             {automation.is_active && (
-              <span className="h-1.5 w-1.5 rounded-[2px] bg-foreground" aria-label={t("activeIndicator")} />
+              <span className="h-1.5 w-1.5 rounded-[1px] bg-foreground" aria-label={t("activeIndicator")} />
             )}
           </div>
           {automation.description && (
@@ -313,7 +313,7 @@ function AutomationCard({
           <div className="mt-1.5 flex flex-wrap items-center gap-2 text-xs font-mono text-muted-foreground">
             <span
               className={cn(
-                "inline-flex items-center rounded-[4px] border px-1.5 py-0.2 text-[10px] font-mono",
+                "inline-flex items-center rounded-[3px] border px-1.5 py-0.2 text-[9px] font-mono uppercase",
                 meta.pillClass,
               )}
             >
@@ -339,7 +339,7 @@ function AutomationCard({
           <DropdownMenu>
             <DropdownMenuTrigger
               aria-label={t("openMenu")}
-              className="inline-flex h-8 w-8 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-muted hover:text-foreground data-[popup-open]:bg-muted"
+              className="inline-flex h-7 w-7 items-center justify-center rounded-[3px] border border-border text-muted-foreground transition-colors hover:bg-muted hover:text-foreground data-[popup-open]:bg-muted"
             >
               <MoreVertical className="h-4 w-4" />
             </DropdownMenuTrigger>

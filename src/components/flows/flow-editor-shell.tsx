@@ -126,10 +126,10 @@ export function FlowEditorShell({ initialFlow, initialNodes }: Props) {
               {LEGEND_TYPES.map((t_type) => (
                 <span
                   key={t_type}
-                  className="inline-flex items-center gap-1.5 text-[11.5px] text-muted-foreground"
+                  className="inline-flex items-center gap-1.5 font-mono text-[11px] text-muted-foreground"
                 >
                   <span
-                    className="h-2.5 w-2.5 rounded-full"
+                    className="h-2 w-2 rounded-[2px] border border-border"
                     style={{ background: nodeColors(t_type).solid }}
                   />
                   {t(`nodes.${t_type}.label`)}
@@ -140,7 +140,7 @@ export function FlowEditorShell({ initialFlow, initialNodes }: Props) {
         )}
 
         {/* ---- stage: the active view, owning its own overflow ---- */}
-        <div className="relative mx-6 min-h-0 flex-1 overflow-hidden rounded-xl border border-border bg-card-2">
+        <div className="relative mx-6 min-h-0 flex-1 overflow-hidden rounded-[4px] border border-border bg-card-2">
           {effectiveView === "canvas" ? (
             <FlowCanvas />
           ) : (
@@ -198,9 +198,9 @@ function SegButton({
       onClick={onClick}
       aria-pressed={active}
       className={cn(
-        "inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 text-[12.5px] font-medium transition-colors",
+        "inline-flex items-center gap-1.5 rounded-[3px] px-2.5 py-1 text-xs font-mono transition-colors",
         active
-          ? "bg-card text-foreground shadow-sm"
+          ? "border border-border bg-card text-foreground shadow-none"
           : "text-muted-foreground hover:text-foreground",
       )}
     >

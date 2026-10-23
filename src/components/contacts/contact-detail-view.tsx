@@ -404,8 +404,8 @@ export function ContactDetailView({
             {/* Header */}
             <SheetHeader className="p-4 border-b border-border/50">
               <div className="flex items-center gap-3">
-                <Avatar className="size-12 bg-muted border border-border">
-                  <AvatarFallback className="bg-primary/10 text-primary text-sm font-medium">
+                <Avatar className="size-10 rounded-[4px] bg-muted border border-border">
+                  <AvatarFallback className="rounded-[4px] bg-muted text-foreground font-mono text-xs font-medium">
                     {getInitials(contact.name)}
                   </AvatarFallback>
                 </Avatar>
@@ -560,7 +560,7 @@ export function ContactDetailView({
                       {t('tagsTab.noTagsAvailable')}
                     </p>
                   ) : (
-                    <div className="flex flex-wrap gap-2">
+                    <div className="flex flex-wrap gap-1.5">
                       {allTags.map((tag) => {
                         const selected = contactTagIds.includes(tag.id);
                         return (
@@ -568,15 +568,11 @@ export function ContactDetailView({
                             key={tag.id}
                             onClick={() => toggleTag(tag.id)}
                             disabled={savingTags}
-                            className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-medium transition-all cursor-pointer ${
+                            className={`inline-flex items-center rounded-[4px] border px-2.5 py-1 font-mono text-xs transition-colors cursor-pointer ${
                               selected
-                                ? 'ring-2 ring-primary ring-offset-1 ring-offset-border'
-                                : 'opacity-50 hover:opacity-80'
+                                ? 'border-foreground bg-foreground text-background font-medium'
+                                : 'border-border bg-muted/40 text-muted-foreground hover:bg-muted hover:text-foreground'
                             }`}
-                            style={{
-                              backgroundColor: tag.color + '20',
-                              color: tag.color,
-                            }}
                           >
                             {selected && <Check className="size-3 mr-1" />}
                             {tag.name}
@@ -713,19 +709,15 @@ export function ContactDetailView({
                     {deals.map((deal) => (
                       <div
                         key={deal.id}
-                        className="rounded-lg border border-border bg-muted/50 p-3"
+                        className="rounded-[4px] border border-border bg-muted/20 p-3"
                       >
                         <div className="flex items-start justify-between gap-2">
-                          <p className="text-sm font-medium text-foreground">
+                          <p className="text-xs font-medium text-foreground">
                             {deal.title}
                           </p>
                           {deal.stage && (
                             <span
-                              className="shrink-0 rounded-full px-1.5 py-0.5 text-[10px] font-medium"
-                              style={{
-                                backgroundColor: `${deal.stage.color}20`,
-                                color: deal.stage.color,
-                              }}
+                              className="shrink-0 rounded-[3px] border border-border bg-background px-1.5 py-0.5 font-mono text-[9px] uppercase text-muted-foreground"
                             >
                               {deal.stage.name}
                             </span>

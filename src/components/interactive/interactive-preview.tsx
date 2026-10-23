@@ -40,7 +40,7 @@ export function InteractivePreview({
   return (
     <div
       className={cn(
-        "w-full max-w-[260px] overflow-hidden rounded-lg bg-card text-foreground shadow-sm ring-1 ring-border",
+        "w-full max-w-[260px] overflow-hidden rounded-[4px] border border-border bg-card text-foreground shadow-none",
         className,
       )}
     >

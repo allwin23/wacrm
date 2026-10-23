@@ -14,11 +14,11 @@ import { cn } from '@/lib/utils';
 export type ChipVariant = 'owner' | 'admin' | 'ok' | 'warn' | 'muted';
 
 const VARIANTS: Record<ChipVariant, string> = {
-  owner: 'border-amber-500/40 bg-amber-500/10 text-amber-600 dark:text-amber-300',
-  admin: 'border-primary-soft-2 bg-primary-soft text-primary',
-  ok: 'border-emerald-500/35 bg-emerald-500/10 text-emerald-600 dark:text-emerald-300',
-  warn: 'border-amber-500/40 bg-amber-500/10 text-amber-600 dark:text-amber-300',
-  muted: 'border-border bg-muted text-muted-foreground',
+  owner: 'border-foreground/40 bg-foreground/10 text-foreground font-mono uppercase',
+  admin: 'border-border bg-muted/60 text-foreground font-mono uppercase',
+  ok: 'border-border bg-muted/40 text-foreground font-mono uppercase',
+  warn: 'border-border bg-muted/60 text-muted-foreground font-mono uppercase',
+  muted: 'border-border bg-transparent text-muted-foreground font-mono uppercase',
 };
 
 export function SettingsChip({
@@ -33,7 +33,7 @@ export function SettingsChip({
   return (
     <span
       className={cn(
-        'inline-flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 text-xs font-medium whitespace-nowrap [&_svg]:size-3.5',
+        'inline-flex items-center gap-1.5 rounded-[4px] border px-2 py-0.5 text-[10px] tracking-wider whitespace-nowrap [&_svg]:size-3',
         VARIANTS[variant],
         className,
       )}

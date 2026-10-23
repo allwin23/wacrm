@@ -92,7 +92,7 @@ function MediaActionButton({
       // Own surface rather than inheriting the bubble's, so the same button
       // reads on the muted inbound fill, the primary outbound fill, and on
       // top of an arbitrary photo.
-      className="flex h-7 w-7 items-center justify-center rounded-full border border-border/60 bg-background/85 text-foreground shadow-sm backdrop-blur-sm transition-colors hover:bg-background disabled:opacity-60"
+      className="flex h-7 w-7 items-center justify-center rounded-[4px] border border-border bg-background text-foreground shadow-none transition-colors hover:bg-muted disabled:opacity-60"
     >
       {busy ? (
         <Loader2 className="h-3.5 w-3.5 animate-spin" />
@@ -105,7 +105,7 @@ function MediaActionButton({
 
 function MediaPlaceholder({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex h-40 w-60 items-center justify-center rounded-lg bg-muted">
+    <div className="flex h-40 w-60 items-center justify-center rounded-[4px] border border-border bg-muted/30">
       {children}
     </div>
   );
@@ -137,7 +137,7 @@ export function MediaImageBubble({
   if (status !== "ready" || !src) {
     return (
       <MediaPlaceholder>
-        <div className="h-5 w-5 animate-spin rounded-full border-2 border-primary border-t-transparent" />
+        <div className="h-5 w-5 animate-spin rounded-full border-2 border-foreground border-t-transparent" />
       </MediaPlaceholder>
     );
   }
@@ -147,7 +147,7 @@ export function MediaImageBubble({
     <img
       src={src}
       alt={t("imageAlt")}
-      className={cn(MEDIA_BOX, "rounded-lg object-contain")}
+      className={cn(MEDIA_BOX, "rounded-[4px] border border-border object-contain")}
       onError={() => setBroken(true)}
     />
   );
@@ -159,7 +159,7 @@ export function MediaImageBubble({
           type="button"
           onClick={onOpen}
           aria-label={t("viewImage")}
-          className="block cursor-zoom-in rounded-lg outline-none ring-offset-2 ring-offset-transparent focus-visible:ring-2 focus-visible:ring-ring"
+          className="block cursor-zoom-in rounded-[4px] outline-none ring-offset-2 ring-offset-transparent focus-visible:ring-1 focus-visible:ring-ring"
         >
           {image}
         </button>
@@ -199,7 +199,7 @@ export function MediaVideoBubble({
         src={message.media_url}
         controls
         preload="metadata"
-        className={cn(MEDIA_BOX, "rounded-lg")}
+        className={cn(MEDIA_BOX, "rounded-[4px] border border-border")}
       />
       {/* Top-right, clear of the native controls — and always visible, since
           expanding is the only way to watch a clip capped at 15rem wide and
@@ -260,9 +260,9 @@ export function MediaDocumentBubble({
         href={message.media_url}
         target="_blank"
         rel="noopener noreferrer"
-        className="flex min-w-0 flex-1 items-center gap-2 rounded-lg bg-muted/50 px-3 py-2 text-sm hover:bg-muted"
+        className="flex min-w-0 flex-1 items-center gap-2 rounded-[4px] border border-border bg-muted/40 px-3 py-2 text-xs font-mono hover:bg-muted"
       >
-        <FileText className="h-5 w-5 shrink-0 text-muted-foreground" />
+        <FileText className="h-4 w-4 shrink-0 text-muted-foreground" />
         <span className="truncate">{message.content_text || t("document")}</span>
       </a>
       <MediaActionButton

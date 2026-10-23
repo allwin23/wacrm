@@ -241,8 +241,8 @@ function LightboxImage({
 
   if (status !== "ready" || !src) {
     return (
-      <div className="flex h-64 w-full min-w-64 items-center justify-center rounded-lg bg-muted">
-        <div className="h-6 w-6 animate-spin rounded-full border-2 border-primary border-t-transparent" />
+      <div className="flex h-64 w-full min-w-64 items-center justify-center rounded-[4px] border border-border bg-muted/40">
+        <div className="h-6 w-6 animate-spin rounded-full border-2 border-foreground border-t-transparent" />
       </div>
     );
   }
@@ -263,7 +263,7 @@ function LightboxImage({
         onClick={onToggleZoom}
         onError={() => setBroken(true)}
         className={cn(
-          "mx-auto block rounded-lg",
+          "mx-auto block rounded-[4px] border border-border",
           zoomed
             ? "max-w-none cursor-zoom-out"
             : cn(MEDIA_MAX_HEIGHT, "max-w-full cursor-zoom-in object-contain"),
@@ -291,7 +291,7 @@ function ToolbarButton({
       disabled={busy}
       aria-label={label}
       title={label}
-      className="flex h-8 w-8 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-muted hover:text-foreground disabled:opacity-60"
+      className="flex h-8 w-8 items-center justify-center rounded-[4px] border border-transparent text-muted-foreground transition-colors hover:border-border hover:bg-muted hover:text-foreground disabled:opacity-60"
     >
       {busy ? (
         <Loader2 className="h-4 w-4 animate-spin" />
@@ -323,11 +323,11 @@ function NavButton({
       aria-label={label}
       title={label}
       className={cn(
-        "absolute top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-border/60 bg-background/85 text-foreground shadow-md backdrop-blur-sm transition-colors hover:bg-background disabled:pointer-events-none disabled:opacity-0",
+        "absolute top-1/2 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-[4px] border border-border bg-background text-foreground shadow-none transition-colors hover:bg-muted disabled:pointer-events-none disabled:opacity-0",
         side === "left" ? "left-1" : "right-1",
       )}
     >
-      <Icon className="h-5 w-5" />
+      <Icon className="h-4 w-4" />
     </button>
   );
 }

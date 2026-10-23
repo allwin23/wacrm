@@ -243,15 +243,15 @@ export function Step3Personalize({
       </div>
 
       {mediaHeaderType && (
-        <div className="rounded-xl border border-border bg-card/50 p-4">
+        <div className="rounded-[4px] border border-border bg-card p-4">
           <div className="mb-3 flex items-center gap-2">
-            <ImageIcon className="h-4 w-4 text-primary" />
+            <ImageIcon className="h-4 w-4 text-foreground" />
             <p className="text-sm font-medium text-foreground">{t('personalize.headerImage')}</p>
-            <span className="inline-flex items-center rounded-md bg-primary/10 px-2 py-0.5 text-xs font-medium uppercase text-primary">
+            <span className="inline-flex items-center rounded-[3px] border border-border bg-muted/60 px-1.5 py-0.5 font-mono text-[10px] uppercase text-foreground">
               {mediaHeaderType}
             </span>
           </div>
-          <label className="mb-1.5 block text-xs font-medium text-muted-foreground">
+          <label className="mb-1.5 block text-xs font-mono uppercase tracking-wider text-muted-foreground">
             {t('personalize.imageUrl')}
           </label>
           <Input
@@ -299,10 +299,10 @@ export function Step3Personalize({
             return (
               <div
                 key={placeholder}
-                className="rounded-xl border border-border bg-card/50 p-4"
+                className="rounded-[4px] border border-border bg-card p-4"
               >
                 <div className="mb-3 flex items-center gap-2">
-                  <span className="inline-flex items-center rounded-md bg-primary/10 px-2 py-0.5 text-xs font-mono font-medium text-primary">
+                  <span className="inline-flex items-center rounded-[3px] border border-border bg-muted/60 px-1.5 py-0.5 font-mono text-xs font-medium text-foreground">
                     {placeholder}
                   </span>
                 </div>
@@ -402,18 +402,18 @@ export function Step3Personalize({
 
       {/* Live Preview — rendered as a WhatsApp-style bubble so the user
           sees approximately what the recipient will see. */}
-      <div className="rounded-xl border border-border bg-card/50 p-4">
+      <div className="rounded-[4px] border border-border bg-card p-4">
         <div className="mb-3 flex items-center gap-2">
-          <Eye className="h-4 w-4 text-primary" />
+          <Eye className="h-4 w-4 text-foreground" />
           <p className="text-sm font-medium text-foreground">{t('personalize.preview')}</p>
-          <span className="text-xs text-muted-foreground">({previewLabel})</span>
+          <span className="font-mono text-xs text-muted-foreground">({previewLabel})</span>
           {loadingPreview && (
-            <Loader2 className="h-3.5 w-3.5 animate-spin text-primary" />
+            <Loader2 className="h-3.5 w-3.5 animate-spin text-foreground" />
           )}
         </div>
-        <div className="rounded-lg bg-[#0e1a12] p-3">
-          <div className="ml-auto max-w-[85%] rounded-lg bg-primary/30 px-3 py-2 shadow-sm">
-            <p className="whitespace-pre-wrap text-sm text-primary">
+        <div className="rounded-[4px] border border-border bg-muted/20 p-3">
+          <div className="ml-auto max-w-[85%] rounded-[4px] border border-border bg-card px-3 py-2 shadow-none">
+            <p className="whitespace-pre-wrap text-xs text-foreground">
               {previewText}
             </p>
           </div>
@@ -421,7 +421,7 @@ export function Step3Personalize({
       </div>
 
       {unmappedKeys.length > 0 && (
-        <div className="rounded-md border border-amber-500/30 bg-amber-500/10 px-3 py-2 text-xs text-amber-300">
+        <div className="rounded-[4px] border border-border bg-muted/40 px-3 py-2 font-mono text-xs text-foreground">
           {t.rich('personalize.unmappedWarning', {
             keys: unmappedKeys.join(', '),
             mono: (chunks) => <span className="font-mono font-semibold">{chunks}</span>,

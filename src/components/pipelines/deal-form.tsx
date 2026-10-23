@@ -287,7 +287,7 @@ export function DealForm({
               {linkedConversation && (
                 <Link
                   href="/inbox"
-                  className="mt-1 inline-flex items-center gap-1.5 self-start rounded-md bg-primary/10 px-2 py-1 text-xs text-primary hover:bg-primary/20"
+                  className="mt-1 inline-flex items-center gap-1.5 self-start rounded-[4px] border border-border bg-muted/50 px-2 py-1 font-mono text-xs text-foreground hover:bg-muted"
                 >
                   <MessageSquare className="h-3 w-3" />
                   {t("linkToConversation")}
@@ -377,8 +377,8 @@ export function DealForm({
             </div>
 
             {deal && (
-              <div className="space-y-2 rounded-lg border border-border bg-muted/50 p-3">
-                <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+              <div className="space-y-2 rounded-[4px] border border-border bg-muted/20 p-3">
+                <p className="text-xs font-mono uppercase tracking-wider text-muted-foreground">
                   {t("status")}
                 </p>
                 <div className="flex gap-2">
@@ -386,7 +386,7 @@ export function DealForm({
                     type="button"
                     onClick={() => handleStatusChange("won")}
                     disabled={!!statusAction || deal.status === "won"}
-                    className="flex-1 bg-primary text-primary-foreground hover:bg-primary/90 disabled:opacity-50"
+                    className="flex-1 rounded-[4px] bg-primary text-primary-foreground hover:bg-primary/90 disabled:opacity-50"
                   >
                     {statusAction === "won" ? (
                       <Loader2 className="h-4 w-4 animate-spin" />
@@ -401,7 +401,7 @@ export function DealForm({
                     type="button"
                     onClick={() => handleStatusChange("lost")}
                     disabled={!!statusAction || deal.status === "lost"}
-                    className="flex-1 bg-red-600 text-white hover:bg-red-700 disabled:opacity-50"
+                    className="flex-1 rounded-[4px] bg-destructive text-destructive-foreground hover:bg-destructive/90 disabled:opacity-50"
                   >
                     {statusAction === "lost" ? (
                       <Loader2 className="h-4 w-4 animate-spin" />
@@ -419,7 +419,7 @@ export function DealForm({
                     variant="ghost"
                     onClick={() => handleStatusChange("open")}
                     disabled={!!statusAction}
-                    className="w-full text-muted-foreground hover:text-foreground"
+                    className="w-full rounded-[4px] text-muted-foreground hover:text-foreground"
                   >
                     {t("reopenDeal")}
                   </Button>
@@ -433,14 +433,14 @@ export function DealForm({
               <Button
                 variant="outline"
                 onClick={() => onOpenChange(false)}
-                className="flex-1 border-border bg-transparent text-muted-foreground hover:bg-muted"
+                className="flex-1 rounded-[4px] border-border bg-transparent text-muted-foreground hover:bg-muted"
               >
                 {t("cancel")}
               </Button>
               <Button
                 onClick={handleSave}
                 disabled={saving || !title.trim() || !contactId || !stageId}
-                className="flex-1 bg-primary text-primary-foreground hover:bg-primary/90"
+                className="flex-1 rounded-[4px] bg-primary text-primary-foreground hover:bg-primary/90"
               >
                 {saving ? t("saving") : deal ? t("saveChanges") : t("createDeal")}
               </Button>
@@ -448,14 +448,14 @@ export function DealForm({
 
             {deal &&
               (confirmDelete ? (
-                <div className="mt-3 flex items-center justify-between gap-2 rounded-md border border-red-500/30 bg-red-500/10 px-3 py-2 text-xs">
-                  <span className="text-red-300">{t("deletePrompt")}</span>
+                <div className="mt-3 flex items-center justify-between gap-2 rounded-[4px] border border-destructive/40 bg-destructive/10 px-3 py-2 text-xs">
+                  <span className="text-destructive">{t("deletePrompt")}</span>
                   <div className="flex gap-1">
                     <button
                       type="button"
                       onClick={() => setConfirmDelete(false)}
                       disabled={deleting}
-                      className="rounded px-2 py-1 text-muted-foreground hover:bg-muted"
+                      className="rounded-[4px] px-2 py-1 text-muted-foreground hover:bg-muted"
                     >
                       {t("cancel")}
                     </button>
@@ -463,7 +463,7 @@ export function DealForm({
                       type="button"
                       onClick={handleDelete}
                       disabled={deleting}
-                      className="rounded bg-red-600 px-2 py-1 font-medium text-white hover:bg-red-700 disabled:opacity-50"
+                      className="rounded-[4px] bg-destructive px-2 py-1 font-mono text-xs font-medium text-destructive-foreground hover:bg-destructive/90 disabled:opacity-50"
                     >
                       {deleting ? t("deleting") : t("confirm")}
                     </button>

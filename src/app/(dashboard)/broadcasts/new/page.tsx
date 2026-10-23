@@ -149,19 +149,19 @@ export default function NewBroadcastPage() {
             <div key={step.key} className="flex flex-1 items-center">
               <div className="flex items-center gap-2">
                 <div
-                  className={`flex h-8 w-8 items-center justify-center rounded-full text-xs font-medium transition-all ${
+                  className={`flex h-7 w-7 items-center justify-center rounded-[4px] border font-mono text-xs transition-colors ${
                     isCompleted
-                      ? 'bg-primary text-primary-foreground'
+                      ? 'border-foreground bg-foreground text-background font-medium'
                       : isActive
-                        ? 'border-2 border-primary bg-primary/10 text-primary'
-                        : 'border border-border bg-muted text-muted-foreground'
+                        ? 'border-foreground bg-foreground/10 text-foreground font-semibold'
+                        : 'border-border bg-muted/40 text-muted-foreground'
                   }`}
                 >
-                  {isCompleted ? <Check className="h-4 w-4" /> : index + 1}
+                  {isCompleted ? <Check className="h-3.5 w-3.5" /> : index + 1}
                 </div>
                 <span
-                  className={`hidden text-sm font-medium sm:block ${
-                    isActive ? 'text-foreground' : isCompleted ? 'text-primary' : 'text-muted-foreground'
+                  className={`hidden text-xs font-mono uppercase tracking-wider sm:block ${
+                    isActive ? 'text-foreground font-semibold' : isCompleted ? 'text-foreground' : 'text-muted-foreground'
                   }`}
                 >
                   {t(`steps.${step.label}`)}

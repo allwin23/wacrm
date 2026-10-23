@@ -352,16 +352,11 @@ export function ContactForm({
                       key={tag.id}
                       type="button"
                       onClick={() => toggleTag(tag.id)}
-                      className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium transition-colors cursor-pointer ${
+                      className={`inline-flex items-center rounded-[4px] border px-2.5 py-0.5 font-mono text-xs transition-colors cursor-pointer ${
                         selected
-                          ? 'ring-2 ring-primary ring-offset-1 ring-offset-border'
-                          : 'opacity-60 hover:opacity-100'
+                          ? 'border-foreground bg-foreground text-background font-medium'
+                          : 'border-border bg-muted/40 text-muted-foreground hover:bg-muted hover:text-foreground'
                       }`}
-                      style={{
-                        backgroundColor: tag.color + '20',
-                        color: tag.color,
-                        borderColor: tag.color,
-                      }}
                     >
                       {tag.name}
                     </button>

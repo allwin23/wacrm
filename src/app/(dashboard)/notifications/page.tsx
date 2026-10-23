@@ -188,9 +188,9 @@ export default function NotificationsPage() {
       </div>
 
       {notifications.length === 0 ? (
-        <div className="flex h-48 flex-col items-center justify-center rounded-xl border border-dashed border-border bg-muted/40">
-          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10">
-            <Bell className="h-6 w-6 text-primary" />
+        <div className="flex h-48 flex-col items-center justify-center rounded-[4px] border border-dashed border-border bg-muted/20">
+          <div className="flex h-10 w-10 items-center justify-center rounded-[4px] border border-border bg-muted/50">
+            <Bell className="h-5 w-5 text-foreground" />
           </div>
           <p className="mt-3 text-sm font-medium text-foreground">
             {t("emptyTitle")}
@@ -210,24 +210,21 @@ export default function NotificationsPage() {
                   type="button"
                   onClick={() => handleClick(n)}
                   className={cn(
-                    "flex w-full items-start gap-3 rounded-xl border p-4 text-left transition-colors",
+                    "flex w-full items-start gap-3 rounded-[4px] border p-4 text-left transition-colors",
                     isUnread
-                      ? "border-primary/30 bg-primary/5 hover:border-primary/50"
+                      ? "border-foreground/30 bg-muted/30 hover:border-foreground/50"
                       : "border-border bg-card hover:border-border/70",
                   )}
                 >
                   <div
                     className={cn(
-                      "flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg",
-                      isUnread ? "bg-primary/15" : "bg-muted",
+                      "flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-[3px] border border-border",
+                      isUnread ? "bg-foreground text-background" : "bg-muted/50 text-muted-foreground",
                     )}
                     aria-hidden
                   >
                     <Icon
-                      className={cn(
-                        "h-5 w-5",
-                        isUnread ? "text-primary" : "text-muted-foreground",
-                      )}
+                      className="h-4 w-4"
                     />
                   </div>
                   <div className="min-w-0 flex-1">
@@ -243,7 +240,7 @@ export default function NotificationsPage() {
                       {isUnread && (
                         <span
                           aria-label={t("unread")}
-                          className="h-2 w-2 flex-shrink-0 rounded-full bg-primary"
+                          className="h-1.5 w-1.5 flex-shrink-0 rounded-[1px] bg-foreground"
                         />
                       )}
                     </div>

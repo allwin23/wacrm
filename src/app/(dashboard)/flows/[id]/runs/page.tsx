@@ -64,27 +64,27 @@ const STATUS_META: Record<
   { classes: string; icon: typeof Clock }
 > = {
   active: {
-    classes: "border-emerald-600/40 bg-emerald-500/10 text-emerald-300",
+    classes: "border-foreground/30 bg-foreground text-background font-mono text-[9px] uppercase",
     icon: PlayCircle,
   },
   completed: {
-    classes: "border-border bg-muted text-muted-foreground",
+    classes: "border-border bg-muted/60 text-muted-foreground font-mono text-[9px] uppercase",
     icon: CircleCheck,
   },
   handed_off: {
-    classes: "border-amber-600/40 bg-amber-500/10 text-amber-300",
+    classes: "border-border bg-muted text-foreground font-mono text-[9px] uppercase",
     icon: UserPlus,
   },
   timed_out: {
-    classes: "border-border bg-muted/60 text-muted-foreground",
+    classes: "border-border bg-muted/40 text-muted-foreground font-mono text-[9px] uppercase",
     icon: Clock,
   },
   paused_by_agent: {
-    classes: "border-border bg-muted text-muted-foreground",
+    classes: "border-border bg-muted/40 text-muted-foreground font-mono text-[9px] uppercase",
     icon: PauseCircle,
   },
   failed: {
-    classes: "border-red-600/40 bg-red-500/10 text-red-300",
+    classes: "border-destructive/40 bg-destructive/10 text-destructive font-mono text-[9px] uppercase",
     icon: CircleAlert,
   },
 };
@@ -228,7 +228,7 @@ function RunCard({
       })
     : null;
   return (
-    <div className="rounded-lg border border-border bg-card">
+    <div className="rounded-[4px] border border-border bg-card">
       <button
         type="button"
         onClick={onToggle}
@@ -244,7 +244,7 @@ function RunCard({
             <span className="truncate text-sm font-medium text-foreground">
               {contactLabel}
             </span>
-            <Badge variant="outline" className={cn("gap-1", meta.classes)}>
+            <Badge variant="outline" className={cn("gap-1 rounded-[3px]", meta.classes)}>
               <StatusIcon className="h-3 w-3" />
               {t(
                 run.status === "active"
@@ -303,15 +303,15 @@ function RunCard({
 }
 
 const EVENT_COLOR: Record<string, string> = {
-  started: "text-emerald-300",
+  started: "text-foreground font-medium",
   node_entered: "text-muted-foreground",
-  message_sent: "text-sky-300",
-  reply_received: "text-primary",
-  fallback_fired: "text-amber-300",
-  handoff: "text-amber-300",
+  message_sent: "text-foreground",
+  reply_received: "text-foreground font-medium",
+  fallback_fired: "text-foreground",
+  handoff: "text-foreground",
   timeout: "text-muted-foreground",
-  error: "text-red-300",
-  completed: "text-emerald-300",
+  error: "text-destructive",
+  completed: "text-foreground font-medium",
 };
 
 function EventLine({ ev }: { ev: EventRow }) {

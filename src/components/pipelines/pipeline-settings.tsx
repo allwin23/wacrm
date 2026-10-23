@@ -38,16 +38,14 @@ import { toast } from "sonner";
 import { useTranslations } from "next-intl";
 
 const STAGE_COLORS = [
-  "#3b82f6",
-  "#6366f1",
-  "#8b5cf6",
-  "#ec4899",
-  "#f43f5e",
-  "#f97316",
-  "#eab308",
-  "#22c55e",
-  "#14b8a6",
-  "#06b6d4",
+  "#18181B",
+  "#27272A",
+  "#3F3F46",
+  "#52525B",
+  "#71717A",
+  "#A1A1AA",
+  "#D4D4D8",
+  "#E4E4E7",
 ];
 
 interface PipelineSettingsProps {
@@ -208,10 +206,10 @@ export function PipelineSettings({
 
         {showDeleteConfirm ? (
           <div className="py-4">
-            <div className="flex items-center gap-3 rounded-lg border border-red-500/30 bg-red-500/10 p-4">
-              <AlertTriangle className="h-5 w-5 shrink-0 text-red-400" />
+            <div className="flex items-center gap-3 rounded-[4px] border border-destructive/40 bg-destructive/10 p-4">
+              <AlertTriangle className="h-5 w-5 shrink-0 text-destructive" />
               <div>
-                <p className="text-sm font-medium text-red-400">
+                <p className="text-sm font-medium text-destructive">
                   {t("deletePipeline")}
                 </p>
                 <p className="mt-1 text-xs text-muted-foreground">
@@ -223,14 +221,14 @@ export function PipelineSettings({
               <Button
                 variant="outline"
                 onClick={() => setShowDeleteConfirm(false)}
-                className="border-border bg-transparent text-muted-foreground hover:bg-muted"
+                className="rounded-[4px] border-border bg-transparent text-muted-foreground hover:bg-muted"
               >
                 {t("cancel")}
               </Button>
               <Button
                 onClick={handleDeletePipeline}
                 disabled={deleting}
-                className="bg-red-600 text-white hover:bg-red-700"
+                className="rounded-[4px] bg-destructive text-destructive-foreground hover:bg-destructive/90"
               >
                 {deleting ? t("deleting") : t("deletePipelineBtn")}
               </Button>
@@ -290,13 +288,13 @@ export function PipelineSettings({
                       key={color}
                       type="button"
                       onClick={() => setNewStageColor(color)}
-                      className="h-5 w-5 rounded-full border-2 transition-transform hover:scale-110"
+                      className="h-5 w-5 rounded-[3px] border transition-colors hover:border-foreground"
                       style={{
                         backgroundColor: color,
                         borderColor:
                           newStageColor === color
                             ? "var(--foreground)"
-                            : "transparent",
+                            : "var(--border)",
                       }}
                       aria-label={`Pick color ${color}`}
                     />
@@ -338,21 +336,21 @@ export function PipelineSettings({
             <DialogFooter className="border-border bg-popover/50">
               <Button
                 onClick={() => setShowDeleteConfirm(true)}
-                className="mr-auto bg-red-600 text-white hover:bg-red-700"
+                className="mr-auto rounded-[4px] bg-destructive text-destructive-foreground hover:bg-destructive/90"
               >
                 {t("deletePipeline")}
               </Button>
               <Button
                 variant="outline"
                 onClick={() => onOpenChange(false)}
-                className="border-border bg-transparent text-muted-foreground hover:bg-muted"
+                className="rounded-[4px] border-border bg-transparent text-muted-foreground hover:bg-muted"
               >
                 {t("cancel")}
               </Button>
               <Button
                 onClick={handleSave}
                 disabled={saving || !name.trim()}
-                className="bg-primary text-primary-foreground hover:bg-primary/90"
+                className="rounded-[4px] bg-primary text-primary-foreground hover:bg-primary/90"
               >
                 {saving ? t("saving") : t("saveChanges")}
               </Button>
@@ -440,14 +438,14 @@ function ColorSwatch({
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
-        className="h-4 w-4 rounded-full border border-border"
+        className="h-4 w-4 rounded-[2px] border border-border"
         style={{ backgroundColor: value }}
         aria-label={t("changeColor")}
       />
       {open && (
         <>
           <div className="fixed inset-0 z-10" onClick={() => setOpen(false)} />
-          <div className="absolute left-0 top-6 z-20 flex flex-wrap gap-1 rounded-lg border border-border bg-popover p-2 shadow-lg w-36">
+          <div className="absolute left-0 top-6 z-20 flex flex-wrap gap-1 rounded-[4px] border border-border bg-popover p-2 shadow-none w-36">
             {colors.map((c) => (
               <button
                 key={c}
@@ -456,11 +454,11 @@ function ColorSwatch({
                   onChange(c);
                   setOpen(false);
                 }}
-                className="h-5 w-5 rounded-full border-2 transition-transform hover:scale-110"
+                className="h-5 w-5 rounded-[2px] border transition-colors hover:border-foreground"
                 style={{
                   backgroundColor: c,
                   borderColor:
-                    c === value ? "var(--foreground)" : "transparent",
+                    c === value ? "var(--foreground)" : "var(--border)",
                 }}
               />
             ))}

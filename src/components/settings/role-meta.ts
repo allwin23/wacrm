@@ -26,19 +26,19 @@ export const ROLE_META: Record<
     icon: Crown,
     label: 'owner',
     variant: 'owner',
-    className: 'border-amber-500/40 bg-amber-500/10 text-amber-300',
+    className: 'border-foreground/30 bg-foreground/10 text-foreground font-mono uppercase text-[10px] rounded-[4px]',
   },
   admin: {
     icon: Shield,
     label: 'admin',
     variant: 'admin',
-    className: 'border-primary/40 bg-primary/10 text-primary',
+    className: 'border-border bg-muted text-foreground font-mono uppercase text-[10px] rounded-[4px]',
   },
   agent: {
     icon: UserCog,
     label: 'agent',
     variant: 'muted',
-    className: 'border-border bg-muted text-muted-foreground',
+    className: 'border-border bg-muted text-muted-foreground font-mono uppercase text-[10px] rounded-[4px]',
   },
   viewer: {
     icon: UserIcon,
@@ -46,6 +46,6 @@ export const ROLE_META: Record<
     variant: 'muted',
     // Outline-only so it stays quieter than the filled Agent chip in
     // both modes — bg-card would blend into a card surface in light mode.
-    className: 'border-border bg-transparent text-muted-foreground',
+    className: 'border-border bg-transparent text-muted-foreground font-mono uppercase text-[10px] rounded-[4px]',
   },
 };

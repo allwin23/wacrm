@@ -107,19 +107,19 @@ interface StepMeta {
 }
 
 const STEP_META: Record<AutomationStepType, StepMeta> = {
-  send_message: { label: "send_message", icon: MessageSquare, border: "border-l-primary" },
-  send_buttons: { label: "send_buttons", icon: MousePointerClick, border: "border-l-primary" },
-  send_list: { label: "send_list", icon: List, border: "border-l-primary" },
-  send_template: { label: "send_template", icon: FileText, border: "border-l-primary" },
-  add_tag: { label: "add_tag", icon: Tag, border: "border-l-primary" },
-  remove_tag: { label: "remove_tag", icon: TagIcon, border: "border-l-primary" },
-  assign_conversation: { label: "assign_conversation", icon: UserCheck, border: "border-l-primary" },
-  update_contact_field: { label: "update_contact_field", icon: PencilLine, border: "border-l-primary" },
-  create_deal: { label: "create_deal", icon: Briefcase, border: "border-l-primary" },
-  wait: { label: "wait", icon: Hourglass, border: "border-l-border" },
-  condition: { label: "condition", icon: GitBranch, border: "border-l-amber-500" },
-  send_webhook: { label: "send_webhook", icon: Webhook, border: "border-l-primary" },
-  close_conversation: { label: "close_conversation", icon: CircleSlash, border: "border-l-primary" },
+  send_message: { label: "send_message", icon: MessageSquare, border: "border-l-foreground" },
+  send_buttons: { label: "send_buttons", icon: MousePointerClick, border: "border-l-foreground" },
+  send_list: { label: "send_list", icon: List, border: "border-l-foreground" },
+  send_template: { label: "send_template", icon: FileText, border: "border-l-foreground" },
+  add_tag: { label: "add_tag", icon: Tag, border: "border-l-foreground/80" },
+  remove_tag: { label: "remove_tag", icon: TagIcon, border: "border-l-foreground/80" },
+  assign_conversation: { label: "assign_conversation", icon: UserCheck, border: "border-l-foreground/80" },
+  update_contact_field: { label: "update_contact_field", icon: PencilLine, border: "border-l-foreground/80" },
+  create_deal: { label: "create_deal", icon: Briefcase, border: "border-l-foreground/80" },
+  wait: { label: "wait", icon: Hourglass, border: "border-l-muted-foreground" },
+  condition: { label: "condition", icon: GitBranch, border: "border-l-foreground" },
+  send_webhook: { label: "send_webhook", icon: Webhook, border: "border-l-foreground" },
+  close_conversation: { label: "close_conversation", icon: CircleSlash, border: "border-l-foreground" },
 }
 
 const ADDABLE_STEPS: AutomationStepType[] = [
@@ -343,7 +343,7 @@ function TagSelect({
   return (
     <div className="flex items-center gap-2">
       <span
-        className="h-3 w-3 shrink-0 rounded-full border border-border"
+        className="h-2.5 w-2.5 shrink-0 rounded-[1px] border border-border"
         style={{ backgroundColor: selected?.color ?? "transparent" }}
         aria-hidden
       />
@@ -808,17 +808,17 @@ function TriggerCard({
     // Card width: full on mobile, fixed 320px on sm+. The canvas wrapper
     // (max-w-2xl + px-4) keeps this tidy on tablet/desktop.
     <div className="z-10 w-full max-w-[320px] sm:w-80">
-      <div className="rounded-lg border border-border border-l-4 border-l-blue-500 bg-card shadow-lg">
+      <div className="rounded-[4px] border border-border border-l-2 border-l-foreground bg-card shadow-none">
         <button
           type="button"
           onClick={() => setOpen((v) => !v)}
           className="flex w-full items-center gap-3 px-4 py-3 text-left"
         >
-          <div className="flex h-8 w-8 items-center justify-center rounded-md bg-blue-500/10 text-blue-400">
+          <div className="flex h-7 w-7 items-center justify-center rounded-[3px] border border-border bg-muted/50 text-foreground">
             <Zap className="h-4 w-4" />
           </div>
           <div className="min-w-0 flex-1">
-            <div className="text-[11px] uppercase tracking-wide text-blue-300">{t("trigger")}</div>
+            <div className="text-[10px] font-mono uppercase tracking-wide text-muted-foreground">{t("trigger")}</div>
             <div className="truncate text-sm font-medium text-foreground">
               {t(`triggers.${type}.label`)}
             </div>
@@ -1118,7 +1118,7 @@ function StepRenderer({
       <div className={cn("z-10 flex min-w-0 flex-col", width)}>
         <div
           className={cn(
-            "rounded-lg border border-border border-l-4 bg-card shadow-lg",
+            "rounded-[4px] border border-border border-l-2 bg-card shadow-none",
             meta.border,
           )}
         >
@@ -1128,11 +1128,11 @@ function StepRenderer({
             className="flex w-full items-center gap-3 px-4 py-3 text-left"
           >
             <GripVertical className="h-4 w-4 flex-shrink-0 text-muted-foreground" aria-hidden />
-            <div className="flex h-8 w-8 items-center justify-center rounded-md bg-muted text-muted-foreground">
+            <div className="flex h-7 w-7 items-center justify-center rounded-[3px] border border-border bg-muted/50 text-muted-foreground">
               <Icon className="h-4 w-4" />
             </div>
             <div className="min-w-0 flex-1">
-              <div className="text-[11px] uppercase tracking-wide text-muted-foreground">
+              <div className="text-[10px] font-mono uppercase tracking-wide text-muted-foreground">
                 {isCondition ? t("kindCondition") : step.step_type === "wait" ? t("kindWait") : t("kindAction")}
               </div>
               <div className="truncate text-sm font-medium text-foreground">{t(`steps.${meta.label}`)}</div>
@@ -1258,13 +1258,13 @@ function AddButton({ onPick }: { onPick: (t: AutomationStepType) => void }) {
   const t = useTranslations("Automations.builder")
   return (
     <div className="relative flex flex-col items-center">
-      <div className="h-4 w-[2px] bg-border" aria-hidden />
+      <div className="h-4 w-[1px] bg-border" aria-hidden />
       <DropdownMenu>
         <DropdownMenuTrigger
-          className="flex h-8 w-8 items-center justify-center rounded-full border-2 border-dashed border-border bg-background text-muted-foreground transition-colors hover:border-primary hover:bg-primary/10 hover:text-primary data-[popup-open]:border-primary data-[popup-open]:bg-primary/20 data-[popup-open]:text-primary"
+          className="flex h-7 w-7 items-center justify-center rounded-[4px] border border-dashed border-border bg-background text-muted-foreground transition-colors hover:border-foreground hover:bg-muted hover:text-foreground data-[popup-open]:border-foreground data-[popup-open]:bg-muted data-[popup-open]:text-foreground"
           aria-label={t("addStep")}
         >
-          <Plus className="h-4 w-4" />
+          <Plus className="h-3.5 w-3.5" />
         </DropdownMenuTrigger>
         <DropdownMenuContent
           align="start"

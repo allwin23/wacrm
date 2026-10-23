@@ -174,7 +174,7 @@ export function FlowBuilder() {
         </div>
 
         {state.nodes.length === 0 ? (
-          <div className="border-border bg-card/50 text-muted-foreground rounded-lg border border-dashed p-8 text-center text-sm">
+          <div className="border-border bg-card/50 text-muted-foreground rounded-[4px] border border-dashed p-8 text-center text-sm font-mono">
             {t.rich('nodesEmpty', { strong: (chunks) => <strong>{chunks}</strong> })}
           </div>
         ) : (
@@ -273,7 +273,7 @@ function TriggerPanel({
   t: ReturnType<typeof useTranslations>;
 }) {
   return (
-    <section className="border-border bg-card rounded-lg border p-4">
+    <section className="border-border bg-card rounded-[4px] border p-4">
       <h2 className="text-foreground mb-3 text-sm font-semibold">{t('triggerTitle')}</h2>
       <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
         <div>
@@ -355,7 +355,7 @@ function EntryPicker({
 }) {
   if (state.nodes.length === 0) return null;
   return (
-    <section className="border-border bg-card flex items-center gap-3 rounded-lg border p-3">
+    <section className="border-border bg-card flex items-center gap-3 rounded-[4px] border p-3">
       <CornerDownRight className="text-primary h-4 w-4 shrink-0" />
       <span className="text-muted-foreground text-xs">{t('entryNodeTitle')}</span>
       <NodeKeySelect
@@ -411,13 +411,13 @@ function NodeCard({
     <div
       ref={cardRef}
       className={cn(
-        'bg-card relative overflow-hidden rounded-xl border transition-shadow duration-500',
+        'bg-card relative overflow-hidden rounded-[4px] border transition-colors duration-200',
         hasError
-          ? 'border-red-500/40'
+          ? 'border-destructive/40'
           : isEntry
-            ? 'border-primary/50'
+            ? 'border-foreground/50'
             : 'border-border',
-        isFlashed && 'ring-primary ring-offset-background ring-2 ring-offset-2'
+        isFlashed && 'ring-1 ring-foreground'
       )}
     >
       {/* type-colored left rail, ties the list row to the canvas hue */}
@@ -445,7 +445,7 @@ function NodeCard({
             {isEntry && (
               <Badge
                 variant="outline"
-                className="border-primary/40 bg-primary/10 text-primary text-[10px]"
+                className="border-border bg-foreground text-background font-mono text-[9px] uppercase rounded-[3px]"
               >
                 {t('badgeEntry')}
               </Badge>
@@ -458,7 +458,7 @@ function NodeCard({
           )}
         </div>
         {hasError && (
-          <CircleAlert className="h-3.5 w-3.5 shrink-0 text-red-400" />
+          <CircleAlert className="h-3.5 w-3.5 shrink-0 text-destructive" />
         )}
         {expanded ? (
           <ChevronUp className="text-muted-foreground h-4 w-4" />
@@ -494,7 +494,7 @@ function NodeCard({
             </Button>
           </div>
           {issues.length > 0 && (
-            <div className="mt-3 flex flex-col gap-1 rounded-md bg-red-500/5 p-2">
+            <div className="mt-3 flex flex-col gap-1 rounded-[4px] border border-destructive/30 bg-destructive/5 p-2 font-mono text-xs">
               {issues.map((i, ix) => (
                 <IssueLine key={ix} issue={i} />
               ))}
@@ -595,7 +595,7 @@ function AddNodeButton({ onAdd, t }: { onAdd: (type: NodeType) => void; t: Retur
   return (
     <DropdownMenu>
       <DropdownMenuTrigger
-        className="border-border bg-card text-foreground hover:bg-muted inline-flex items-center gap-1.5 rounded-md border px-3 py-1.5 text-xs font-medium transition-colors"
+        className="border-border bg-card text-foreground hover:bg-muted inline-flex items-center gap-1.5 rounded-[4px] border px-3 py-1.5 font-mono text-xs font-medium transition-colors"
         aria-label={t('addNode')}
       >
         <Plus className="h-3.5 w-3.5" />

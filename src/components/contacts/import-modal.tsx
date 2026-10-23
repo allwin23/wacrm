@@ -89,24 +89,13 @@ function ImportPreviewTags({
   return (
     <div className="flex min-w-[4.5rem] flex-wrap gap-1">
       {tagNames.map((name) => {
-        const color =
-          tagColorByKey.get(name.trim().toLowerCase()) ?? DEFAULT_TAG_COLOR;
         const isKnown = tagColorByKey.has(name.trim().toLowerCase());
         return (
           <span
             key={name}
-            className="inline-flex max-w-full items-center gap-1 rounded-full px-2 py-0.5 text-[10px] leading-none font-medium"
-            style={{
-              backgroundColor: `${color}18`,
-              color,
-              border: `1px solid ${color}${isKnown ? '55' : '30'}`,
-            }}
+            className="inline-flex max-w-full items-center gap-1 rounded-[3px] border border-border bg-muted/60 px-1.5 py-0.5 font-mono text-[10px] text-foreground"
             title={isKnown ? name : t('willBeCreated', { name })}
           >
-            <span
-              className="size-1.5 shrink-0 rounded-full"
-              style={{ backgroundColor: color }}
-            />
             <span className="truncate">{name}</span>
           </span>
         );
@@ -457,16 +446,16 @@ export function ImportModal({
                 fileInputRef.current?.click();
             }}
             className={cn(
-              'group flex cursor-pointer flex-col items-center justify-center gap-2 rounded-xl border border-dashed p-5 transition-all',
+              'group flex cursor-pointer flex-col items-center justify-center gap-2 rounded-[4px] border border-dashed p-5 transition-all',
               file
-                ? 'border-primary/35 bg-primary/[0.04]'
-                : 'hover:border-primary/40 border-border/80 bg-background/40 hover:bg-background/70'
+                ? 'border-foreground/40 bg-muted/20'
+                : 'border-border bg-background hover:border-foreground/40 hover:bg-muted/30'
             )}
           >
             {file ? (
               <>
-                <div className="bg-primary/15 ring-primary/25 flex size-10 items-center justify-center rounded-lg ring-1">
-                  <FileText className="text-primary size-5" />
+                <div className="flex size-9 items-center justify-center rounded-[4px] border border-border bg-muted/50">
+                  <FileText className="text-foreground size-4" />
                 </div>
                 <p
                   className="max-w-full truncate px-2 text-sm font-medium text-popover-foreground"
@@ -474,14 +463,14 @@ export function ImportModal({
                 >
                   {truncateFilename(file.name)}
                 </p>
-                <span className="rounded-full bg-muted px-2.5 py-0.5 text-[11px] font-medium text-muted-foreground">
+                <span className="rounded-[3px] border border-border bg-muted px-2 py-0.5 font-mono text-[10px] text-muted-foreground">
                   {t('rowsReady', { count: parsedRows.length })}
                 </span>
               </>
             ) : (
               <>
-                <div className="flex size-10 items-center justify-center rounded-lg bg-muted/80 ring-1 ring-border/80 transition-colors group-hover:bg-muted">
-                  <Upload className="size-5 text-muted-foreground group-hover:text-foreground" />
+                <div className="flex size-9 items-center justify-center rounded-[4px] border border-border bg-muted/40 transition-colors group-hover:bg-muted">
+                  <Upload className="size-4 text-muted-foreground group-hover:text-foreground" />
                 </div>
                 <p className="text-sm text-muted-foreground">
                   {t('uploadDropzone')}

@@ -81,16 +81,16 @@ export function EditorHeader() {
           placeholder={t("namePlaceholder")}
           spellCheck={false}
           aria-label={t("namePlaceholder")}
-          className="min-w-[120px] max-w-[340px] rounded-lg border border-transparent bg-transparent px-2 py-1 text-lg font-bold leading-tight tracking-tight text-foreground outline-none transition-colors hover:bg-muted focus:border-primary focus:bg-transparent focus:shadow-[0_0_0_3px_var(--primary-soft)]"
+          className="min-w-[120px] max-w-[340px] rounded-[4px] border border-transparent bg-transparent px-2 py-1 text-base font-semibold leading-tight tracking-tight text-foreground outline-none transition-colors hover:bg-muted focus:border-foreground focus:bg-transparent"
         />
         <StatusChip status={state.status} />
         {dirty && (
           <span
-            className="inline-flex shrink-0 items-center gap-1.5 text-[10px] font-medium uppercase tracking-wide text-amber-300"
+            className="inline-flex shrink-0 items-center gap-1.5 font-mono text-[10px] uppercase tracking-wider text-muted-foreground"
             title={t("unsavedHint")}
             aria-live="polite"
           >
-            <span className="h-1.5 w-1.5 rounded-full bg-amber-400" />
+            <span className="h-1.5 w-1.5 rounded-[1px] bg-foreground/70" />
             {t("edited")}
           </span>
         )}
@@ -180,24 +180,22 @@ function StatusChip({ status }: { status: BuilderState["status"] }) {
   const t = useTranslations("Flows.list");
   const cfg = {
     draft: {
-      // Neutral, not amber — amber is reserved for the adjacent
-      // "Edited" dirty signal, so the two don't read as the same alert.
-      cls: "border-border bg-muted text-muted-foreground",
+      cls: "border-border bg-muted/60 text-muted-foreground",
       label: t("statusDraft"),
     },
     active: {
-      cls: "border-emerald-600/40 bg-emerald-500/10 text-emerald-300",
+      cls: "border-foreground/30 bg-foreground text-background",
       label: t("statusActive"),
     },
     archived: {
-      cls: "border-border bg-muted/50 text-muted-foreground",
+      cls: "border-border bg-muted/30 text-muted-foreground",
       label: t("statusArchived"),
     },
   }[status];
   return (
     <span
       className={cn(
-        "inline-flex shrink-0 items-center gap-1.5 rounded-full border px-2.5 py-1 text-[11.5px] font-medium",
+        "inline-flex shrink-0 items-center gap-1.5 rounded-[3px] border px-2 py-0.5 font-mono text-[10px] uppercase",
         cfg.cls,
       )}
     >

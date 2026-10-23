@@ -113,25 +113,25 @@ export function Step4ScheduleSend({
       </div>
 
       {/* Summary Card */}
-      <div className="rounded-xl border border-border bg-card/50 p-4 space-y-3">
-        <p className="text-sm font-medium text-foreground">{t('scheduleSend.summary')}</p>
+      <div className="rounded-[4px] border border-border bg-card p-4 space-y-3">
+        <p className="text-xs font-mono uppercase tracking-wider text-muted-foreground">{t('scheduleSend.summary')}</p>
         <div className="grid grid-cols-2 gap-3 text-sm">
           <div>
             <p className="text-xs text-muted-foreground">{t('scheduleSend.template')}</p>
-            <p className="text-foreground">{template.name}</p>
+            <p className="font-mono text-foreground">{template.name}</p>
           </div>
           <div>
             <p className="text-xs text-muted-foreground">{t('scheduleSend.audience')}</p>
-            <p className="text-foreground">{audienceLabel}</p>
+            <p className="font-mono text-foreground">{audienceLabel}</p>
           </div>
           <div>
             <p className="text-xs text-muted-foreground">{t('scheduleSend.estimatedReach')}</p>
-            <div className="flex items-center gap-1.5">
+            <div className="flex items-center gap-1.5 font-mono">
               {loadingReach ? (
-                <Loader2 className="h-3 w-3 animate-spin text-primary" />
+                <Loader2 className="h-3 w-3 animate-spin text-foreground" />
               ) : (
                 <>
-                  <Users className="h-3.5 w-3.5 text-primary" />
+                  <Users className="h-3.5 w-3.5 text-foreground" />
                   <p className="font-medium text-foreground">{estimatedReach.toLocaleString()}</p>
                 </>
               )}
@@ -139,24 +139,24 @@ export function Step4ScheduleSend({
           </div>
           <div>
             <p className="text-xs text-muted-foreground">{t('scheduleSend.language')}</p>
-            <p className="text-foreground">{template.language ?? 'en_US'}</p>
+            <p className="font-mono text-foreground">{template.language ?? 'en_US'}</p>
           </div>
         </div>
       </div>
 
       {/* Processing overlay */}
       {isProcessing && (
-        <div className="rounded-xl border border-primary/20 bg-primary/5 p-4">
+        <div className="rounded-[4px] border border-border bg-muted/30 p-4">
           <div className="mb-2 flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <Loader2 className="h-4 w-4 animate-spin text-primary" />
+              <Loader2 className="h-4 w-4 animate-spin text-foreground" />
               <p className="text-sm font-medium text-foreground">{t('scheduleSend.sending')}</p>
             </div>
-            <span className="text-xs font-medium text-primary">{progress}%</span>
+            <span className="font-mono text-xs font-medium text-foreground">{progress}%</span>
           </div>
-          <div className="h-1.5 w-full rounded-full bg-muted">
+          <div className="h-1.5 w-full rounded-[2px] bg-muted">
             <div
-              className="h-1.5 rounded-full bg-primary transition-all duration-300"
+              className="h-1.5 rounded-[2px] bg-foreground transition-all duration-300"
               style={{ width: `${progress}%` }}
             />
           </div>

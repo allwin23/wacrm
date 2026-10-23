@@ -267,15 +267,15 @@ export function ConversationList({
             <DropdownMenu>
               <DropdownMenuTrigger
                 className={cn(
-                  "inline-flex items-center justify-center h-7 gap-1 px-2 text-xs rounded-md hover:bg-muted",
+                  "inline-flex items-center justify-center h-7 gap-1 px-2 text-xs rounded-[4px] border border-border bg-background hover:bg-muted",
                   selectedTagIds.length > 0
-                    ? "text-primary"
+                    ? "text-foreground font-medium"
                     : "text-muted-foreground hover:text-foreground"
                 )}
               >
                 {t("tags")}
                 {selectedTagIds.length > 0 && (
-                  <span className="flex h-4 min-w-4 items-center justify-center rounded-full bg-primary px-1 text-[10px] font-bold text-primary-foreground">
+                  <span className="flex h-3.5 min-w-3.5 items-center justify-center rounded-[2px] bg-foreground px-1 text-[9px] font-mono text-background">
                     {selectedTagIds.length}
                   </span>
                 )}
@@ -290,13 +290,10 @@ export function ConversationList({
                     key={t.id}
                     checked={selectedTagIds.includes(t.id)}
                     onCheckedChange={() => toggleTag(t.id)}
-                    className="text-sm text-popover-foreground"
+                    className="text-xs font-mono text-popover-foreground"
                   >
                     <span className="flex items-center gap-2">
-                      <span
-                        className="h-2 w-2 shrink-0 rounded-full"
-                        style={{ backgroundColor: t.color }}
-                      />
+                      <span className="h-1.5 w-1.5 shrink-0 rounded-[1px] bg-foreground/60" />
                       <span className="truncate">{t.name}</span>
                     </span>
                   </DropdownMenuCheckboxItem>
@@ -309,9 +306,9 @@ export function ConversationList({
             <DropdownMenu>
               <DropdownMenuTrigger
                 className={cn(
-                  "inline-flex max-w-40 items-center justify-center h-7 gap-1 px-2 text-xs rounded-md hover:bg-muted",
+                  "inline-flex max-w-40 items-center justify-center h-7 gap-1 px-2 text-xs rounded-[4px] border border-border bg-background hover:bg-muted",
                   selectedCompany
-                    ? "text-primary"
+                    ? "text-foreground font-medium"
                     : "text-muted-foreground hover:text-foreground"
                 )}
               >
@@ -325,9 +322,9 @@ export function ConversationList({
                 <DropdownMenuItem
                   onClick={() => setSelectedCompany(null)}
                   className={cn(
-                    "text-sm",
+                    "text-xs font-mono",
                     selectedCompany === null
-                      ? "text-primary"
+                      ? "text-foreground font-medium"
                       : "text-popover-foreground"
                   )}
                 >
@@ -338,9 +335,9 @@ export function ConversationList({
                     key={co}
                     onClick={() => setSelectedCompany(co)}
                     className={cn(
-                      "text-sm",
+                      "text-xs font-mono",
                       selectedCompany === co
-                        ? "text-primary"
+                        ? "text-foreground font-medium"
                         : "text-popover-foreground"
                     )}
                   >
@@ -360,12 +357,8 @@ export function ConversationList({
                 <button
                   key={id}
                   onClick={() => toggleTag(id)}
-                  className="inline-flex items-center gap-1 rounded-full bg-muted px-2 py-0.5 text-[11px] text-foreground hover:bg-muted/70"
+                  className="inline-flex items-center gap-1 rounded-[4px] border border-border bg-muted/50 px-1.5 py-0.5 text-[10px] font-mono text-foreground hover:bg-muted"
                 >
-                  <span
-                    className="h-1.5 w-1.5 shrink-0 rounded-full"
-                    style={{ backgroundColor: tag?.color ?? "var(--muted-foreground)" }}
-                  />
                   <span className="max-w-24 truncate">{tag?.name ?? t("tags")}</span>
                   <X className="h-3 w-3" />
                 </button>
@@ -374,7 +367,7 @@ export function ConversationList({
             {selectedCompany && (
               <button
                 onClick={() => setSelectedCompany(null)}
-                className="inline-flex items-center gap-1 rounded-full bg-muted px-2 py-0.5 text-[11px] text-foreground hover:bg-muted/70"
+                className="inline-flex items-center gap-1 rounded-[4px] border border-border bg-muted/50 px-1.5 py-0.5 text-[10px] font-mono text-foreground hover:bg-muted"
               >
                 <span className="max-w-24 truncate">{selectedCompany}</span>
                 <X className="h-3 w-3" />
@@ -454,17 +447,17 @@ function ConversationItem({
     <button
       onClick={handleClick}
       className={cn(
-        "flex w-full items-start gap-3 px-3 py-3 text-left transition-colors hover:bg-muted/50",
-        isActive && "border-l-2 border-primary bg-muted/70"
+        "flex w-full items-start gap-3 px-3 py-3 text-left transition-colors hover:bg-muted/40",
+        isActive && "border-l-2 border-foreground bg-muted/60"
       )}
     >
       {/* Avatar */}
-      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-muted text-sm font-medium text-foreground">
+      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[4px] border border-border bg-muted/50 text-xs font-mono font-medium text-foreground">
         {contact?.avatar_url ? (
           <img
             src={contact.avatar_url}
             alt={displayName}
-            className="h-10 w-10 rounded-full object-cover"
+            className="h-10 w-10 rounded-[4px] object-cover"
           />
         ) : (
           initials

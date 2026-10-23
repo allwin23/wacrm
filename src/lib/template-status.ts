@@ -20,34 +20,34 @@ export const templateStatusConfig: Record<
 > = {
   DRAFT: {
     label: 'Draft',
-    classes: 'bg-slate-600/20 text-muted-foreground border-slate-600/30',
+    classes: 'bg-transparent text-muted-foreground border-border font-mono text-[10px] uppercase rounded-[4px]',
   },
   PENDING: {
     label: 'Pending',
-    classes: 'bg-yellow-600/20 text-yellow-400 border-yellow-600/30',
+    classes: 'bg-muted text-foreground border-border font-mono text-[10px] uppercase rounded-[4px]',
   },
   APPROVED: {
     label: 'Approved',
-    classes: 'bg-primary/20 text-primary border-primary/30',
+    classes: 'bg-foreground text-background border-foreground font-mono text-[10px] uppercase rounded-[4px]',
   },
   REJECTED: {
     label: 'Rejected',
-    classes: 'bg-red-600/20 text-red-400 border-red-600/30',
+    classes: 'bg-destructive/10 text-destructive border-destructive/30 font-mono text-[10px] uppercase rounded-[4px]',
   },
   PAUSED: {
     label: 'Paused',
-    classes: 'bg-orange-600/20 text-orange-400 border-orange-600/30',
+    classes: 'bg-muted text-muted-foreground border-border font-mono text-[10px] uppercase rounded-[4px]',
   },
   DISABLED: {
     label: 'Disabled',
-    classes: 'bg-red-900/30 text-red-500 border-red-900/40',
+    classes: 'bg-muted text-muted-foreground border-border font-mono text-[10px] uppercase rounded-[4px]',
   },
   IN_APPEAL: {
     label: 'In Appeal',
-    classes: 'bg-blue-600/20 text-blue-400 border-blue-600/30',
+    classes: 'bg-muted/80 text-foreground border-border font-mono text-[10px] uppercase rounded-[4px]',
   },
   PENDING_DELETION: {
     label: 'Pending Deletion',
-    classes: 'bg-slate-700/30 text-muted-foreground border-slate-700/40',
+    classes: 'bg-transparent text-muted-foreground border-dashed border-border font-mono text-[10px] uppercase rounded-[4px]',
   },
 };

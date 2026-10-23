@@ -62,9 +62,9 @@ const STATUS_LABELS = (t: ReturnType<typeof useTranslations>): Record<FlowRow["s
 });
 
 const STATUS_COLORS: Record<FlowRow["status"], string> = {
-  draft: "border-border bg-muted text-muted-foreground",
-  active: "border-emerald-600/40 bg-emerald-500/10 text-emerald-300",
-  archived: "border-border bg-muted/50 text-muted-foreground",
+  draft: "border-border bg-muted/60 text-muted-foreground",
+  active: "border-border bg-foreground text-background font-mono uppercase text-[9px]",
+  archived: "border-border bg-muted/30 text-muted-foreground",
 };
 
 interface TemplateSummary {
@@ -334,8 +334,8 @@ function EmptyState({
 }) {
   return (
     <div className="flex flex-col items-center justify-center rounded-lg border border-dashed border-border bg-card/50 px-6 py-16 text-center">
-      <div className="flex h-14 w-14 items-center justify-center rounded-full bg-muted">
-        <Workflow className="h-6 w-6 text-muted-foreground" />
+      <div className="flex h-12 w-12 items-center justify-center rounded-[6px] border border-border bg-muted/50">
+        <Workflow className="h-5 w-5 text-muted-foreground" />
       </div>
       <h2 className="mt-4 text-base font-medium text-foreground">
         {t("emptyTitle")}

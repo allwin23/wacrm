@@ -28,12 +28,9 @@ export function ValidationPanel() {
   const t = useTranslations("Flows.validation");
 
   if (issues.length === 0) {
-    // Slate-950 base + emerald accents so the panel stays readable when
-    // sticky-positioned over scrolled-behind node cards (a translucent
-    // bg-emerald-500/10 would bleed through ugly).
     return (
-      <div className="flex items-center gap-2 rounded-lg border border-emerald-600/50 bg-background p-3 text-sm font-medium text-emerald-300">
-        <CircleCheck className="h-4 w-4 shrink-0" />
+      <div className="flex items-center gap-2 rounded-[4px] border border-border bg-card p-3 font-mono text-xs text-foreground">
+        <CircleCheck className="h-4 w-4 shrink-0 text-foreground" />
         {t("noIssues")}
       </div>
     );
@@ -43,15 +40,15 @@ export function ValidationPanel() {
   return (
     <div
       className={cn(
-        "rounded-lg border bg-background p-3",
-        errors.length > 0 ? "border-red-500/40" : "border-amber-500/40",
+        "rounded-[4px] border bg-card p-3",
+        errors.length > 0 ? "border-destructive/40" : "border-border",
       )}
     >
-      <div className="mb-2 flex items-center gap-2 text-xs text-muted-foreground">
+      <div className="mb-2 flex items-center gap-2 font-mono text-xs text-muted-foreground">
         {errors.length > 0 ? (
-          <CircleAlert className="h-4 w-4 text-red-400" />
+          <CircleAlert className="h-4 w-4 text-destructive" />
         ) : (
-          <CircleAlert className="h-4 w-4 text-amber-400" />
+          <CircleAlert className="h-4 w-4 text-muted-foreground" />
         )}
         {t("summary", { errorCount: errors.length, warningCount: warnings.length })}
       </div>
@@ -80,15 +77,15 @@ export function IssueLine({
   t?: ReturnType<typeof useTranslations>;
 }) {
   const tone =
-    issue.severity === "error" ? "text-red-300" : "text-amber-300";
+    issue.severity === "error" ? "text-destructive" : "text-muted-foreground";
   const iconTone =
-    issue.severity === "error" ? "text-red-400" : "text-amber-400";
+    issue.severity === "error" ? "text-destructive" : "text-muted-foreground";
   const body = (
     <>
       <CircleAlert className={cn("mt-0.5 h-3 w-3 shrink-0", iconTone)} />
       <span className="min-w-0 flex-1">
         {issue.node_key && (
-          <code className="mr-1 rounded bg-muted px-1 py-0.5 text-[10px] text-muted-foreground">
+          <code className="mr-1 rounded-[2px] border border-border bg-muted px-1 py-0.5 text-[10px] text-muted-foreground">
             {issue.node_key}
           </code>
         )}
@@ -106,7 +103,7 @@ export function IssueLine({
         type="button"
         onClick={() => onJump(issue.node_key!)}
         className={cn(
-          "flex w-full items-start gap-2 rounded-md px-2 py-1 text-left text-xs transition-colors hover:bg-muted/60",
+          "flex w-full items-start gap-2 rounded-[3px] px-2 py-1 text-left text-xs transition-colors hover:bg-muted/60",
           tone,
         )}
         aria-label={t ? t("jumpToNode", { key: issue.node_key! }) : `Jump to node ${issue.node_key}`}

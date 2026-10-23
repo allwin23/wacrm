@@ -469,7 +469,7 @@ const ChartTooltip = ({
     return (
       <div
         className={cx(
-          "rounded-md border text-sm shadow-md",
+          "rounded-[4px] border font-mono text-xs shadow-none",
           "border-border",
           "bg-popover",
         )}

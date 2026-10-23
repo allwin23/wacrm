@@ -27,14 +27,14 @@ import { useTranslations } from 'next-intl';
 import type { Tag } from '@/types';
 
 const PRESET_COLORS = [
-  { name: 'red', value: '#ef4444' },
-  { name: 'orange', value: '#f97316' },
-  { name: 'amber', value: '#f59e0b' },
-  { name: 'emerald', value: '#10b981' },
-  { name: 'cyan', value: '#06b6d4' },
-  { name: 'blue', value: '#3b82f6' },
-  { name: 'violet', value: '#8b5cf6' },
-  { name: 'pink', value: '#ec4899' },
+  { name: 'black', value: '#111111' },
+  { name: 'zinc-900', value: '#18181b' },
+  { name: 'zinc-800', value: '#27272a' },
+  { name: 'zinc-700', value: '#3f3f46' },
+  { name: 'zinc-600', value: '#52525b' },
+  { name: 'zinc-500', value: '#71717a' },
+  { name: 'zinc-400', value: '#a1a1aa' },
+  { name: 'zinc-300', value: '#d4d4d8' },
 ];
 
 /**
@@ -173,23 +173,17 @@ export function TagManager() {
                 {tags.map((tag) => (
                   <span
                     key={tag.id}
-                    className="group inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-sm font-medium transition-colors"
-                    style={{
-                      backgroundColor: `${tag.color}20`,
-                      color: tag.color,
-                      border: `1px solid ${tag.color}40`,
-                    }}
+                    className="group inline-flex items-center gap-1.5 rounded-[4px] border border-border bg-muted/60 px-2 py-0.5 text-xs font-mono font-medium text-foreground transition-colors"
                   >
                     <span
-                      className="size-2 rounded-full"
-                      style={{ backgroundColor: tag.color }}
+                      className="size-1.5 rounded-[1px] bg-foreground/60"
                     />
                     {tag.name}
                     <button
                       type="button"
                       onClick={() => confirmDelete(tag)}
                       aria-label={t('deleteAria', { name: tag.name })}
-                      className="ml-0.5 rounded-full p-0.5 opacity-60 transition-opacity hover:bg-black/10 hover:opacity-100 dark:hover:bg-white/10"
+                      className="ml-0.5 rounded-[2px] p-0.5 text-muted-foreground transition-colors hover:text-foreground hover:bg-muted"
                     >
                       <X className="size-3" />
                     </button>
@@ -224,9 +218,9 @@ export function TagManager() {
                     aria-label={t('useColor', { color: t(`colors.${color.name}` as Parameters<typeof t>[0]) })}
                     aria-pressed={selectedColor === color.value}
                     className={cn(
-                      'size-6 rounded-md transition-transform hover:scale-110',
+                      'size-5 rounded-[4px] border border-border transition-colors hover:border-foreground',
                       selectedColor === color.value &&
-                        'outline outline-2 outline-offset-2 outline-primary',
+                        'ring-1 ring-offset-1 ring-foreground',
                     )}
                     style={{ backgroundColor: color.value }}
                     title={t(`colors.${color.name}` as Parameters<typeof t>[0])}

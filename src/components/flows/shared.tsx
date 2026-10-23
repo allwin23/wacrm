@@ -100,55 +100,55 @@ export const NODE_META: Record<
   start: {
     slugSeed: 'Start',
     icon: PlayCircle,
-    color: 'text-emerald-400',
+    color: 'text-foreground',
     category: 'flow',
   },
   send_message: {
     slugSeed: 'Send message',
     icon: MessageCircle,
-    color: 'text-sky-400',
+    color: 'text-foreground',
     category: 'messaging',
   },
   send_buttons: {
     slugSeed: 'Send buttons',
     icon: ListChecks,
-    color: 'text-primary',
+    color: 'text-foreground',
     category: 'messaging',
   },
   send_list: {
     slugSeed: 'Send list',
     icon: ListPlus,
-    color: 'text-indigo-400',
+    color: 'text-foreground',
     category: 'messaging',
   },
   send_media: {
     slugSeed: 'Send media',
     icon: Paperclip,
-    color: 'text-cyan-400',
+    color: 'text-foreground',
     category: 'messaging',
   },
   collect_input: {
     slugSeed: 'Collect input',
     icon: Inbox,
-    color: 'text-teal-400',
+    color: 'text-foreground',
     category: 'logic',
   },
   condition: {
     slugSeed: 'If / else',
     icon: GitFork,
-    color: 'text-fuchsia-400',
+    color: 'text-foreground',
     category: 'logic',
   },
   set_tag: {
     slugSeed: 'Tag contact',
     icon: Tag,
-    color: 'text-pink-400',
+    color: 'text-foreground',
     category: 'logic',
   },
   handoff: {
     slugSeed: 'Handoff to agent',
     icon: UserPlus,
-    color: 'text-amber-400',
+    color: 'text-foreground',
     category: 'flow',
   },
   end: {
@@ -187,16 +187,16 @@ export function groupNodeTypesByCategory(
 // ============================================================
 
 const NODE_HUE: Record<NodeType, { l: number; c: number; h: number }> = {
-  start: { l: 0.62, c: 0.13, h: 162 }, // emerald — the start, echoes WhatsApp green
-  send_message: { l: 0.6, c: 0.18, h: 293 }, // violet — the workhorse
-  send_buttons: { l: 0.62, c: 0.16, h: 254 }, // cobalt
-  send_list: { l: 0.62, c: 0.15, h: 277 }, // indigo
-  send_media: { l: 0.65, c: 0.12, h: 210 }, // sky
-  collect_input: { l: 0.65, c: 0.1, h: 185 }, // teal — capture
-  condition: { l: 0.72, c: 0.15, h: 65 }, // amber — a fork in the road
-  set_tag: { l: 0.65, c: 0.15, h: 350 }, // pink
-  handoff: { l: 0.65, c: 0.17, h: 16 }, // rose — hands off
-  end: { l: 0.55, c: 0.01, h: 260 }, // neutral grey — terminal
+  start: { l: 0.75, c: 0, h: 0 },
+  send_message: { l: 0.7, c: 0, h: 0 },
+  send_buttons: { l: 0.65, c: 0, h: 0 },
+  send_list: { l: 0.6, c: 0, h: 0 },
+  send_media: { l: 0.58, c: 0, h: 0 },
+  collect_input: { l: 0.55, c: 0, h: 0 },
+  condition: { l: 0.52, c: 0, h: 0 },
+  set_tag: { l: 0.5, c: 0, h: 0 },
+  handoff: { l: 0.48, c: 0, h: 0 },
+  end: { l: 0.45, c: 0, h: 0 },
 };
 
 export interface NodeColors {
@@ -215,14 +215,9 @@ export function nodeColors(type: NodeType): NodeColors {
   const solid = `oklch(${t.l} ${t.c} ${t.h})`;
   return {
     solid,
-    soft: `oklch(${t.l} ${t.c} ${t.h} / 0.14)`,
-    ring: `oklch(${t.l} ${t.c} ${t.h} / 0.45)`,
-    // Blend the hue toward the live --foreground token so the label
-    // holds contrast in BOTH modes: in dark mode --foreground is
-    // near-white (the label lightens to read on the dark card), in
-    // light mode it's near-black (the label darkens to read on the
-    // white card). The old fixed-light value only worked on dark.
-    text: `color-mix(in oklch, ${solid}, var(--foreground) 38%)`,
+    soft: `color-mix(in oklch, var(--muted) 80%, transparent)`,
+    ring: `var(--border)`,
+    text: `var(--foreground)`,
   };
 }
 
@@ -248,15 +243,14 @@ export function NodeIconChip({
   className?: string;
 }) {
   const meta = NODE_META[type];
-  const c = nodeColors(type);
   const Icon = meta.icon;
   return (
     <span
       className={cn(
-        'flex shrink-0 items-center justify-center rounded-lg',
+        'flex shrink-0 items-center justify-center rounded-[3px] border border-border bg-muted/60 text-foreground',
         className
       )}
-      style={{ width: size, height: size, background: c.soft, color: c.solid }}
+      style={{ width: size, height: size }}
     >
       <Icon size={iconSize} />
     </span>
