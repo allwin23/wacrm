@@ -134,7 +134,11 @@ export function DashboardView() {
                   <div className="w-full bg-[#18181b] rounded-t-[1px] h-full flex items-end overflow-hidden">
                     <div
                       style={{ height: `${heightPct}%` }}
-                      className="w-full bg-foreground/70 hover:bg-foreground rounded-t-[1px] transition-all"
+                      className={`w-full ${
+                        d.day === 'Fri'
+                          ? 'bg-crimson hover:bg-crimson-hover'
+                          : 'bg-foreground/70 hover:bg-foreground'
+                      } rounded-t-[1px] transition-all`}
                     />
                   </div>
                   <span className="text-[10px] font-mono text-[#71717a]">{d.day}</span>

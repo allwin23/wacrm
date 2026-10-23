@@ -40,7 +40,7 @@ export function Sidebar() {
             <div>
               <div className="font-semibold text-xs tracking-tight text-white flex items-center gap-1.5 font-mono uppercase">
                 WACRM
-                <span className="text-[9px] uppercase font-mono px-1.5 py-0.5 rounded-[2px] bg-foreground text-background font-medium">
+                <span className="text-[9px] uppercase font-mono px-1.5 py-0.5 rounded-[2px] bg-crimson text-white font-medium">
                   DEMO
                 </span>
               </div>
@@ -53,7 +53,7 @@ export function Sidebar() {
         <div className="px-3 pt-3">
           <div className="p-2 rounded-[4px] bg-[#18181b] border border-[#27272a] flex items-center justify-between text-xs font-mono">
             <div className="flex items-center gap-2">
-              <span className="h-1.5 w-1.5 rounded-[1px] bg-foreground" />
+              <span className="h-1.5 w-1.5 rounded-[1px] bg-crimson" />
               <span className="font-medium text-[#e4e4e7]">+1 (555) 019-8374</span>
             </div>
             <CheckCircle2 className="w-3.5 h-3.5 text-foreground" />
@@ -71,7 +71,7 @@ export function Sidebar() {
                 onClick={() => setActiveTab(item.id)}
                 className={`w-full flex items-center justify-between px-3 py-2 rounded-[4px] text-xs font-medium transition-colors ${
                   isActive
-                    ? 'bg-[#27272a] text-white shadow-none'
+                    ? 'bg-[#18181b] text-white border-l-2 border-l-crimson shadow-none'
                     : 'text-[#a1a1aa] hover:text-white hover:bg-[#18181b]'
                 }`}
               >
@@ -82,7 +82,9 @@ export function Sidebar() {
                 {item.badge && (
                   <span
                     className={`text-[9px] font-mono px-1.5 py-0.5 rounded-[2px] ${
-                      isActive
+                      item.id === 'inbox'
+                        ? 'bg-crimson text-white font-semibold'
+                        : isActive
                         ? 'bg-foreground text-background font-medium'
                         : 'bg-[#18181b] text-[#71717a] border border-[#27272a]'
                     }`}

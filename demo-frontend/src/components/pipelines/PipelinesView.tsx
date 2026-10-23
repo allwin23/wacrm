@@ -152,8 +152,8 @@ export function PipelinesView({
                               <ChevronRight className="w-3 h-3" />
                             </button>
                           ) : (
-                            <span className="text-foreground text-[10px] font-mono font-medium flex items-center gap-1 uppercase tracking-wider">
-                              <CheckCircle2 className="w-3 h-3" /> Won
+                            <span className="text-crimson text-[10px] font-mono font-medium flex items-center gap-1 uppercase tracking-wider">
+                              <CheckCircle2 className="w-3 h-3 text-crimson" /> Won
                             </span>
                           )}
                         </div>

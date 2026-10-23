@@ -384,7 +384,7 @@ export function WorkflowBuilder({
 
           <button
             onClick={handleSave}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-[3px] bg-foreground hover:bg-foreground/90 text-background font-medium transition-colors"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-[3px] bg-crimson hover:bg-crimson-hover text-white font-medium transition-colors"
           >
             {savedSuccess ? (
               <>
@@ -496,7 +496,7 @@ export function WorkflowBuilder({
                   <path
                     d={pathD}
                     fill="none"
-                    stroke={isFlowActive ? '#ffffff' : '#3f3f46'}
+                    stroke={isFlowActive ? '#9E1B32' : '#3f3f46'}
                     strokeWidth={isFlowActive ? '2.5' : '1.5'}
                     strokeDasharray={isFlowActive ? '4 4' : undefined}
                     className={isFlowActive ? 'animate-pulse' : ''}
@@ -541,7 +541,7 @@ export function WorkflowBuilder({
                 }}
                 className={`absolute z-10 rounded-[4px] border transition-shadow cursor-grab active:cursor-grabbing ${
                   isSimActive
-                    ? 'border-white bg-[#18181b] ring-2 ring-white shadow-2xl'
+                    ? 'border-crimson bg-[#18181b] ring-2 ring-crimson shadow-2xl'
                     : isSelected
                     ? 'border-foreground bg-[#141417] ring-1 ring-foreground'
                     : 'border-[#27272a] bg-[#121214] hover:border-[#3f3f46]'

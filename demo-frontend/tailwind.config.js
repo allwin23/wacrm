@@ -14,6 +14,12 @@ module.exports = {
         ring: 'hsl(var(--ring))',
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
+        crimson: {
+          DEFAULT: '#9E1B32',
+          hover: '#851629',
+          subtle: 'rgba(158, 27, 50, 0.15)',
+          border: 'rgba(158, 27, 50, 0.35)',
+        },
         card: {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))',

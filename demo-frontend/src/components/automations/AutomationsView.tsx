@@ -66,7 +66,7 @@ export function AutomationsView() {
 
         <button
           onClick={handleCreateNewWorkflow}
-          className="flex items-center gap-1.5 px-3 py-1.5 rounded-[4px] bg-foreground hover:bg-foreground/90 text-background text-xs font-mono font-medium shadow-none transition-colors shrink-0"
+          className="flex items-center gap-1.5 px-3 py-1.5 rounded-[4px] bg-crimson hover:bg-crimson-hover text-white text-xs font-mono font-medium shadow-none transition-colors shrink-0"
         >
           <Plus className="w-3.5 h-3.5" />
           <span>Create Workflow</span>

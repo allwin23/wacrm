@@ -147,7 +147,7 @@ export function InboxView() {
                   onClick={() => setActiveConversationId(conv.id)}
                   className={`w-full text-left p-3 transition-colors flex items-start gap-3 ${
                     isSelected
-                      ? 'bg-[#18181b] border-l-2 border-l-foreground'
+                      ? 'bg-[#18181b] border-l-2 border-l-crimson'
                       : 'hover:bg-[#131316]'
                   }`}
                 >
@@ -187,7 +187,7 @@ export function InboxView() {
                         </span>
                       ))}
                       {conv.unread_count > 0 && (
-                        <span className="ml-auto text-[9px] font-mono px-1.5 py-0.2 rounded-[2px] bg-foreground text-background font-semibold">
+                        <span className="ml-auto text-[9px] font-mono px-1.5 py-0.2 rounded-[2px] bg-crimson text-white font-semibold">
                           {conv.unread_count}
                         </span>
                       )}
@@ -400,7 +400,7 @@ export function InboxView() {
                 <button
                   type="submit"
                   disabled={!inputText.trim()}
-                  className="px-3.5 py-2 rounded-[4px] bg-foreground hover:bg-foreground/90 disabled:opacity-40 text-background text-xs font-mono font-medium flex items-center gap-1.5 transition-colors shadow-none"
+                  className="px-3.5 py-2 rounded-[4px] bg-crimson hover:bg-crimson-hover disabled:opacity-40 text-white text-xs font-mono font-medium flex items-center gap-1.5 transition-colors shadow-none"
                 >
                   <Send className="w-3.5 h-3.5" />
                   <span>Send</span>

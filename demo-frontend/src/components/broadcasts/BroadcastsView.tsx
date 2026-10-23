@@ -65,7 +65,13 @@ export function BroadcastsView() {
                     Template: {bc.template_name}
                   </span>
                 </div>
-                <span className="text-[9px] font-mono uppercase tracking-wider px-2 py-0.5 rounded-[2px] border border-[#27272a] bg-[#18181b] text-foreground">
+                <span
+                  className={`text-[9px] font-mono uppercase tracking-wider px-2 py-0.5 rounded-[2px] border ${
+                    bc.status === 'sending'
+                      ? 'border-crimson/50 bg-crimson/10 text-crimson animate-pulse'
+                      : 'border-[#27272a] bg-[#18181b] text-foreground'
+                  }`}
+                >
                   {bc.status}
                 </span>
               </div>

@@ -51,6 +51,12 @@ export function Header({ onOpenNewContact, onOpenNewDeal }: { onOpenNewContact?:
 
         <div className="h-4 w-[1px] bg-[#27272a] mx-1" />
 
+        {/* Notifications Icon with Crimson Accent Dot */}
+        <div className="relative p-1.5 rounded-[4px] hover:bg-[#18181b] cursor-pointer text-[#a1a1aa] hover:text-white transition-colors">
+          <Bell className="w-4 h-4" />
+          <span className="absolute top-1 right-1 w-1.5 h-1.5 rounded-[0.5px] bg-crimson" />
+        </div>
+
         {/* User Pill */}
         <div className="flex items-center gap-2 px-2.5 py-1 rounded-[4px] bg-[#18181b] border border-[#27272a] text-xs font-mono">
           <div className="w-5 h-5 rounded-[2px] bg-muted border border-border text-foreground font-semibold flex items-center justify-center text-[10px]">

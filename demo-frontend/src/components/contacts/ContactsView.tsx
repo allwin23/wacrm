@@ -150,9 +150,9 @@ export function ContactsView({
                 <td className="py-3 px-4 text-right">
                   <button
                     onClick={() => handleOpenChat(contact.id)}
-                    className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-[3px] bg-[#18181b] hover:bg-foreground hover:text-background border border-[#27272a] text-foreground text-[11px] font-mono transition-colors group"
+                    className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-[3px] bg-[#18181b] hover:bg-crimson hover:text-white border border-[#27272a] hover:border-crimson text-foreground text-[11px] font-mono transition-colors group"
                   >
-                    <MessageSquare className="w-3 h-3 text-[#71717a] group-hover:text-background" />
+                    <MessageSquare className="w-3 h-3 text-[#71717a] group-hover:text-white" />
                     <span>Chat</span>
                   </button>
                 </td>
