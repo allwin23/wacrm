@@ -34,13 +34,13 @@ export function Sidebar() {
         {/* Brand / Logo */}
         <div className="p-4 border-b border-[#27272a] flex items-center justify-between">
           <div className="flex items-center gap-2.5">
-            <div className="w-7 h-7 rounded-[4px] border border-[#27272a] bg-[#18181b] flex items-center justify-center text-foreground font-mono font-semibold text-xs">
+            <div className="w-7 h-7 rounded-[4px] border border-crimson bg-crimson flex items-center justify-center text-white font-mono font-bold text-xs shadow-md shadow-crimson/20">
               WA
             </div>
             <div>
               <div className="font-semibold text-xs tracking-tight text-white flex items-center gap-1.5 font-mono uppercase">
                 WACRM
-                <span className="text-[9px] uppercase font-mono px-1.5 py-0.5 rounded-[2px] bg-crimson text-white font-medium">
+                <span className="text-[9px] uppercase font-mono px-1.5 py-0.5 rounded-[2px] bg-crimson text-white font-bold">
                   DEMO
                 </span>
               </div>
@@ -53,10 +53,10 @@ export function Sidebar() {
         <div className="px-3 pt-3">
           <div className="p-2 rounded-[4px] bg-[#18181b] border border-[#27272a] flex items-center justify-between text-xs font-mono">
             <div className="flex items-center gap-2">
-              <span className="h-1.5 w-1.5 rounded-[1px] bg-crimson" />
+              <span className="h-2 w-2 rounded-[1px] bg-crimson animate-pulse" />
               <span className="font-medium text-[#e4e4e7]">+1 (555) 019-8374</span>
             </div>
-            <CheckCircle2 className="w-3.5 h-3.5 text-foreground" />
+            <CheckCircle2 className="w-3.5 h-3.5 text-crimson" />
           </div>
         </div>
 
@@ -76,16 +76,14 @@ export function Sidebar() {
                 }`}
               >
                 <div className="flex items-center gap-2.5">
-                  <Icon className={`w-4 h-4 ${isActive ? 'text-white' : 'text-[#71717a]'}`} />
-                  <span>{item.label}</span>
+                  <Icon className={`w-4 h-4 ${isActive ? 'text-crimson' : 'text-[#71717a]'}`} />
+                  <span className={isActive ? 'font-semibold text-white' : ''}>{item.label}</span>
                 </div>
                 {item.badge && (
                   <span
                     className={`text-[9px] font-mono px-1.5 py-0.5 rounded-[2px] ${
-                      item.id === 'inbox'
-                        ? 'bg-crimson text-white font-semibold'
-                        : isActive
-                        ? 'bg-foreground text-background font-medium'
+                      item.id === 'inbox' || isActive
+                        ? 'bg-crimson text-white font-bold shadow-sm shadow-crimson/30'
                         : 'bg-[#18181b] text-[#71717a] border border-[#27272a]'
                     }`}
                   >

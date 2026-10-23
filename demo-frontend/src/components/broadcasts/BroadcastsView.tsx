@@ -38,7 +38,7 @@ export function BroadcastsView() {
 
         <button
           onClick={() => setIsModalOpen(true)}
-          className="flex items-center gap-1.5 px-3 py-1.5 rounded-[4px] bg-foreground hover:bg-foreground/90 text-background text-xs font-mono font-medium shadow-none transition-colors"
+          className="flex items-center gap-1.5 px-3 py-1.5 rounded-[4px] bg-crimson hover:bg-crimson-hover text-white text-xs font-mono font-bold shadow-md shadow-crimson/20 transition-colors"
         >
           <Plus className="w-3.5 h-3.5" />
           <span>New Broadcast</span>
@@ -68,7 +68,7 @@ export function BroadcastsView() {
                 <span
                   className={`text-[9px] font-mono uppercase tracking-wider px-2 py-0.5 rounded-[2px] border ${
                     bc.status === 'sending'
-                      ? 'border-crimson/50 bg-crimson/10 text-crimson animate-pulse'
+                      ? 'border-crimson bg-crimson text-white font-bold animate-pulse shadow-sm shadow-crimson/30'
                       : 'border-[#27272a] bg-[#18181b] text-foreground'
                   }`}
                 >
@@ -86,13 +86,13 @@ export function BroadcastsView() {
                 </div>
                 <div>
                   <span className="text-[10px] font-mono uppercase text-[#71717a] block">Delivered</span>
-                  <span className="font-mono font-semibold text-foreground">
+                  <span className="font-mono font-bold text-crimson text-sm">
                     {bc.delivered_count.toLocaleString()}
                   </span>
                 </div>
                 <div>
                   <span className="text-[10px] font-mono uppercase text-[#71717a] block">Read Rate</span>
-                  <span className="font-mono font-semibold text-foreground">{readRate}%</span>
+                  <span className="font-mono font-bold text-crimson text-sm">{readRate}%</span>
                 </div>
               </div>
 
@@ -177,7 +177,7 @@ export function BroadcastsView() {
                 </button>
                 <button
                   type="submit"
-                  className="px-4 py-1.5 rounded-[4px] bg-foreground hover:bg-foreground/90 text-background text-xs font-mono font-medium shadow-none transition-colors"
+                  className="px-4 py-1.5 rounded-[4px] bg-crimson hover:bg-crimson-hover text-white text-xs font-mono font-bold shadow-md shadow-crimson/20 transition-colors"
                 >
                   Schedule Broadcast
                 </button>

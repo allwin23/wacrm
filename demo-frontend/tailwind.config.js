@@ -15,10 +15,12 @@ module.exports = {
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         crimson: {
-          DEFAULT: '#9E1B32',
-          hover: '#851629',
-          subtle: 'rgba(158, 27, 50, 0.15)',
-          border: 'rgba(158, 27, 50, 0.35)',
+          DEFAULT: '#FF2442',
+          hover: '#FF425C',
+          bright: '#FF002B',
+          dark: '#D91432',
+          subtle: 'rgba(255, 36, 66, 0.12)',
+          border: 'rgba(255, 36, 66, 0.35)',
         },
         card: {
           DEFAULT: 'hsl(var(--card))',

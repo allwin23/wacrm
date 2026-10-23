@@ -32,7 +32,7 @@ export function Header({ onOpenNewContact, onOpenNewDeal }: { onOpenNewContact?:
         {activeTab === 'contacts' && (
           <button
             onClick={onOpenNewContact}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-[4px] bg-foreground hover:bg-foreground/90 text-background text-xs font-mono font-medium shadow-none transition-colors"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-[4px] bg-crimson hover:bg-crimson-hover text-white text-xs font-mono font-bold shadow-md shadow-crimson/20 transition-colors"
           >
             <Plus className="w-3.5 h-3.5" />
             <span>Add Contact</span>
@@ -42,7 +42,7 @@ export function Header({ onOpenNewContact, onOpenNewDeal }: { onOpenNewContact?:
         {activeTab === 'pipelines' && (
           <button
             onClick={onOpenNewDeal}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-[4px] bg-foreground hover:bg-foreground/90 text-background text-xs font-mono font-medium shadow-none transition-colors"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-[4px] bg-crimson hover:bg-crimson-hover text-white text-xs font-mono font-bold shadow-md shadow-crimson/20 transition-colors"
           >
             <Plus className="w-3.5 h-3.5" />
             <span>Create Deal</span>
@@ -52,14 +52,14 @@ export function Header({ onOpenNewContact, onOpenNewDeal }: { onOpenNewContact?:
         <div className="h-4 w-[1px] bg-[#27272a] mx-1" />
 
         {/* Notifications Icon with Crimson Accent Dot */}
-        <div className="relative p-1.5 rounded-[4px] hover:bg-[#18181b] cursor-pointer text-[#a1a1aa] hover:text-white transition-colors">
+        <div className="relative p-1.5 rounded-[4px] hover:bg-[#18181b] cursor-pointer text-crimson hover:text-white transition-colors">
           <Bell className="w-4 h-4" />
-          <span className="absolute top-1 right-1 w-1.5 h-1.5 rounded-[0.5px] bg-crimson" />
+          <span className="absolute top-1 right-1 w-1.5 h-1.5 rounded-[0.5px] bg-crimson shadow-sm shadow-crimson" />
         </div>
 
         {/* User Pill */}
-        <div className="flex items-center gap-2 px-2.5 py-1 rounded-[4px] bg-[#18181b] border border-[#27272a] text-xs font-mono">
-          <div className="w-5 h-5 rounded-[2px] bg-muted border border-border text-foreground font-semibold flex items-center justify-center text-[10px]">
+        <div className="flex items-center gap-2 px-2.5 py-1 rounded-[4px] bg-[#18181b] border border-crimson/40 text-xs font-mono">
+          <div className="w-5 h-5 rounded-[2px] bg-crimson/20 border border-crimson/50 text-crimson font-bold flex items-center justify-center text-[10px]">
             DA
           </div>
           <span className="text-[#e4e4e7] font-medium hidden sm:inline">Demo Admin</span>

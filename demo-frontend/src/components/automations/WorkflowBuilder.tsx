@@ -367,18 +367,18 @@ export function WorkflowBuilder({
         <div className="flex items-center gap-2">
           <button
             onClick={() => setIsPaletteOpen(true)}
-            className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-[3px] bg-[#18181b] hover:bg-[#27272a] border border-[#27272a] text-foreground transition-colors"
+            className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-[3px] bg-crimson/10 hover:bg-crimson hover:text-white border border-crimson/40 text-crimson font-bold transition-colors"
           >
-            <Plus className="w-3.5 h-3.5" />
+            <Plus className="w-3.5 h-3.5 text-crimson group-hover:text-white" />
             <span>Add Node</span>
           </button>
 
           <button
             onClick={runSimulation}
             disabled={isSimulating}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-[3px] bg-[#18181b] hover:bg-foreground hover:text-background border border-[#27272a] text-foreground transition-colors group disabled:opacity-50"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-[3px] bg-crimson hover:bg-crimson-hover text-white font-bold shadow-md shadow-crimson/25 transition-colors group disabled:opacity-50"
           >
-            <Play className="w-3.5 h-3.5 text-foreground group-hover:text-background" />
+            <Play className="w-3.5 h-3.5 text-white fill-white" />
             <span>{isSimulating ? 'Executing...' : 'Simulate Run'}</span>
           </button>
 
@@ -552,9 +552,9 @@ export function WorkflowBuilder({
                   <button
                     title="Input Port (Connect target)"
                     onClick={(e) => handlePortClick(e, node.id, true)}
-                    className="absolute -left-2.5 top-1/2 -translate-y-1/2 w-4 h-4 rounded-[2px] bg-[#18181b] border border-[#27272a] hover:bg-foreground flex items-center justify-center group z-20"
+                    className="absolute -left-2.5 top-1/2 -translate-y-1/2 w-4 h-4 rounded-[2px] bg-[#18181b] border border-[#27272a] hover:bg-crimson hover:border-crimson flex items-center justify-center group z-20 transition-colors"
                   >
-                    <span className="w-1.5 h-1.5 rounded-[0.5px] bg-foreground group-hover:bg-background" />
+                    <span className="w-1.5 h-1.5 rounded-[0.5px] bg-foreground group-hover:bg-white" />
                   </button>
                 )}
 
@@ -564,7 +564,7 @@ export function WorkflowBuilder({
                   className="p-2.5 border-b border-[#27272a] bg-[#18181b] flex items-center justify-between"
                 >
                   <div className="flex items-center gap-2">
-                    <Icon className="w-3.5 h-3.5 text-foreground shrink-0" />
+                    <Icon className="w-3.5 h-3.5 text-crimson shrink-0" />
                     <span className="text-[10px] font-mono uppercase tracking-wider text-[#a1a1aa]">
                       {meta.label}
                     </span>
@@ -590,9 +590,9 @@ export function WorkflowBuilder({
                   <button
                     title="Output Port (Drag to connect next node)"
                     onClick={(e) => handlePortClick(e, node.id, false, 'default')}
-                    className="absolute -right-2.5 top-1/2 -translate-y-1/2 w-4 h-4 rounded-[2px] bg-[#18181b] border border-[#27272a] hover:bg-foreground flex items-center justify-center group z-20"
+                    className="absolute -right-2.5 top-1/2 -translate-y-1/2 w-4 h-4 rounded-[2px] bg-[#18181b] border border-[#27272a] hover:bg-crimson hover:border-crimson flex items-center justify-center group z-20 transition-colors"
                   >
-                    <span className="w-1.5 h-1.5 rounded-[0.5px] bg-foreground group-hover:bg-background" />
+                    <span className="w-1.5 h-1.5 rounded-[0.5px] bg-foreground group-hover:bg-white" />
                   </button>
                 ) : (
                   /* Condition Branch Output Ports (True / False) */
@@ -600,16 +600,16 @@ export function WorkflowBuilder({
                     <button
                       title="True / Match Branch"
                       onClick={(e) => handlePortClick(e, node.id, false, 'true')}
-                      className="absolute -right-2.5 top-[36px] -translate-y-1/2 w-4 h-4 rounded-[2px] bg-[#18181b] border border-[#27272a] hover:bg-foreground flex items-center justify-center group z-20"
+                      className="absolute -right-2.5 top-[36px] -translate-y-1/2 w-4 h-4 rounded-[2px] bg-[#18181b] border border-[#27272a] hover:bg-crimson hover:border-crimson flex items-center justify-center group z-20 transition-colors"
                     >
-                      <span className="w-1.5 h-1.5 rounded-[0.5px] bg-foreground group-hover:bg-background" />
+                      <span className="w-1.5 h-1.5 rounded-[0.5px] bg-foreground group-hover:bg-white" />
                     </button>
                     <button
                       title="False / Fallback Branch"
                       onClick={(e) => handlePortClick(e, node.id, false, 'false')}
-                      className="absolute -right-2.5 top-[72px] -translate-y-1/2 w-4 h-4 rounded-[2px] bg-[#18181b] border border-[#27272a] hover:bg-foreground flex items-center justify-center group z-20"
+                      className="absolute -right-2.5 top-[72px] -translate-y-1/2 w-4 h-4 rounded-[2px] bg-[#18181b] border border-[#27272a] hover:bg-crimson hover:border-crimson flex items-center justify-center group z-20 transition-colors"
                     >
-                      <span className="w-1.5 h-1.5 rounded-[0.5px] bg-foreground group-hover:bg-background" />
+                      <span className="w-1.5 h-1.5 rounded-[0.5px] bg-foreground group-hover:bg-white" />
                     </button>
                   </>
                 )}

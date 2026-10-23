@@ -45,10 +45,10 @@ export function DashboardView() {
             <MessageSquare className="w-4 h-4 text-foreground" />
           </div>
           <div className="flex items-baseline justify-between">
-            <span className="text-2xl font-bold tracking-tight text-white font-mono">
+            <span className="text-2xl font-bold tracking-tight text-crimson font-mono">
               {conversations.length * 238}
             </span>
-            <span className="text-[11px] font-mono text-foreground flex items-center gap-0.5">
+            <span className="text-[11px] font-mono text-crimson font-bold flex items-center gap-0.5 bg-crimson/10 px-1.5 py-0.5 rounded-[2px] border border-crimson/30">
               <ArrowUpRight className="w-3 h-3" /> +14.2%
             </span>
           </div>

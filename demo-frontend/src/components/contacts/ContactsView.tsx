@@ -89,7 +89,7 @@ export function ContactsView({
 
         <button
           onClick={() => setIsAddModalOpen(true)}
-          className="w-full sm:w-auto flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-[4px] bg-foreground hover:bg-foreground/90 text-background text-xs font-mono font-medium shadow-none transition-colors"
+          className="w-full sm:w-auto flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-[4px] bg-crimson hover:bg-crimson-hover text-white text-xs font-mono font-bold shadow-md shadow-crimson/20 transition-colors"
         >
           <Plus className="w-3.5 h-3.5" />
           <span>New Contact</span>
@@ -136,23 +136,30 @@ export function ContactsView({
 
                 <td className="py-3 px-4">
                   <div className="flex flex-wrap gap-1">
-                    {contact.tags.map((tag) => (
-                      <span
-                        key={tag.id}
-                        className="text-[10px] font-mono px-1.5 py-0.5 rounded-[2px] border border-[#27272a] bg-[#18181b] text-foreground"
-                      >
-                        {tag.name}
-                      </span>
-                    ))}
+                    {contact.tags.map((tag) => {
+                      const isHighPriority = tag.name.includes('VIP') || tag.name.includes('Enterprise')
+                      return (
+                        <span
+                          key={tag.id}
+                          className={`text-[10px] font-mono px-1.5 py-0.5 rounded-[2px] border ${
+                            isHighPriority
+                              ? 'border-crimson/50 bg-crimson/15 text-crimson font-bold'
+                              : 'border-[#27272a] bg-[#18181b] text-foreground'
+                          }`}
+                        >
+                          {tag.name}
+                        </span>
+                      )
+                    })}
                   </div>
                 </td>
 
                 <td className="py-3 px-4 text-right">
                   <button
                     onClick={() => handleOpenChat(contact.id)}
-                    className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-[3px] bg-[#18181b] hover:bg-crimson hover:text-white border border-[#27272a] hover:border-crimson text-foreground text-[11px] font-mono transition-colors group"
+                    className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-[3px] bg-crimson hover:bg-crimson-hover border border-crimson text-white text-[11px] font-mono font-bold shadow-sm shadow-crimson/20 transition-colors group"
                   >
-                    <MessageSquare className="w-3 h-3 text-[#71717a] group-hover:text-white" />
+                    <MessageSquare className="w-3 h-3 text-white" />
                     <span>Chat</span>
                   </button>
                 </td>
@@ -241,7 +248,7 @@ export function ContactsView({
                 </button>
                 <button
                   type="submit"
-                  className="px-4 py-1.5 rounded-[4px] bg-foreground hover:bg-foreground/90 text-background text-xs font-mono font-medium shadow-none transition-colors"
+                  className="px-4 py-1.5 rounded-[4px] bg-crimson hover:bg-crimson-hover text-white text-xs font-mono font-bold shadow-md shadow-crimson/20 transition-colors"
                 >
                   Save & Open Chat
                 </button>

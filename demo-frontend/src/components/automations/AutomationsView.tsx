@@ -89,7 +89,7 @@ export function AutomationsView() {
           <span className="text-[10px] font-mono uppercase text-[#71717a]">
             Total Executions
           </span>
-          <div className="text-lg font-mono font-bold text-foreground">
+          <div className="text-lg font-mono font-bold text-crimson">
             {totalRuns.toLocaleString()}
           </div>
         </div>
@@ -117,15 +117,19 @@ export function AutomationsView() {
             >
               <div className="space-y-1.5 flex-1">
                 <div className="flex items-center gap-2 flex-wrap">
-                  <Zap className="w-3.5 h-3.5 text-foreground shrink-0" />
+                  <Zap className="w-3.5 h-3.5 text-crimson shrink-0" />
                   <h3 className="text-xs font-semibold text-white">{auto.name}</h3>
 
-                  <span className="text-[9px] font-mono px-2 py-0.5 rounded-[2px] border border-[#27272a] bg-[#18181b] text-foreground font-medium uppercase tracking-wider">
+                  <span className={`text-[9px] font-mono px-2 py-0.5 rounded-[2px] border font-bold uppercase tracking-wider ${
+                    auto.is_active
+                      ? 'border-crimson bg-crimson text-white shadow-sm shadow-crimson/30'
+                      : 'border-[#27272a] bg-[#18181b] text-[#71717a]'
+                  }`}>
                     {auto.is_active ? 'ACTIVE' : 'PAUSED'}
                   </span>
 
-                  <span className="text-[9px] font-mono px-1.5 py-0.5 rounded-[2px] border border-[#27272a] bg-[#18181b] text-[#a1a1aa] flex items-center gap-1">
-                    <Layers className="w-2.5 h-2.5" />
+                  <span className="text-[9px] font-mono px-1.5 py-0.5 rounded-[2px] border border-crimson/30 bg-crimson/10 text-crimson flex items-center gap-1 font-bold">
+                    <Layers className="w-2.5 h-2.5 text-crimson" />
                     <span>{nodeCount} NODES</span>
                   </span>
                 </div>
@@ -151,9 +155,9 @@ export function AutomationsView() {
               <div className="flex items-center gap-2 shrink-0">
                 <button
                   onClick={() => setActiveEditingId(auto.id)}
-                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-[4px] text-xs font-mono font-medium border border-[#27272a] bg-[#18181b] hover:bg-foreground hover:text-background text-foreground transition-colors group"
+                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-[4px] text-xs font-mono font-bold border border-crimson/40 bg-crimson/10 hover:bg-crimson hover:text-white text-crimson transition-colors group shadow-sm shadow-crimson/10"
                 >
-                  <GitBranch className="w-3.5 h-3.5 text-[#71717a] group-hover:text-background" />
+                  <GitBranch className="w-3.5 h-3.5 text-crimson group-hover:text-white" />
                   <span>Open Flow Builder</span>
                 </button>
 

@@ -49,7 +49,7 @@ export function PipelinesView({
         <div className="flex items-center gap-4">
           <div className="text-xs font-mono text-[#71717a]">
             TOTAL PIPELINE:{' '}
-            <span className="text-white font-mono font-bold text-sm ml-1">
+            <span className="text-crimson font-mono font-bold text-base ml-1">
               ${deals.reduce((sum, d) => sum + d.value, 0).toLocaleString()}
             </span>
           </div>
@@ -61,7 +61,7 @@ export function PipelinesView({
 
         <button
           onClick={() => setIsAddDealOpen(true)}
-          className="flex items-center gap-1.5 px-3 py-1.5 rounded-[4px] bg-foreground hover:bg-foreground/90 text-background text-xs font-mono font-medium shadow-none transition-colors"
+          className="flex items-center gap-1.5 px-3 py-1.5 rounded-[4px] bg-crimson hover:bg-crimson-hover text-white text-xs font-mono font-bold shadow-md shadow-crimson/20 transition-colors"
         >
           <Plus className="w-3.5 h-3.5" />
           <span>New Deal</span>
@@ -83,7 +83,7 @@ export function PipelinesView({
               <div className="p-3 border-b border-[#27272a] bg-[#18181b] flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <span
-                    className="w-2 h-2 rounded-[1px] bg-foreground/60"
+                    className="w-2 h-2 rounded-[1px] bg-crimson"
                   />
                   <h3 className="text-xs font-mono font-semibold uppercase tracking-wider text-white">
                     {stage.name}
@@ -92,7 +92,7 @@ export function PipelinesView({
                     {stageDeals.length}
                   </span>
                 </div>
-                <span className="text-[11px] font-mono text-[#a1a1aa]">
+                <span className="text-[11px] font-mono text-crimson font-bold">
                   ${stageTotal.toLocaleString()}
                 </span>
               </div>
@@ -115,7 +115,7 @@ export function PipelinesView({
                           <h4 className="text-xs font-medium text-white leading-tight">
                             {deal.title}
                           </h4>
-                          <span className="text-xs font-mono font-semibold text-foreground shrink-0">
+                          <span className="text-xs font-mono font-bold text-crimson shrink-0">
                             ${deal.value.toLocaleString()}
                           </span>
                         </div>
@@ -146,10 +146,10 @@ export function PipelinesView({
                           {idx < stages.length - 1 ? (
                             <button
                               onClick={() => moveDeal(deal.id, stages[idx + 1].id)}
-                              className="text-foreground hover:text-white font-medium flex items-center gap-0.5 ml-auto text-[10px]"
+                              className="text-crimson hover:text-white font-bold flex items-center gap-0.5 ml-auto text-[10px]"
                             >
                               <span>Next Stage</span>
-                              <ChevronRight className="w-3 h-3" />
+                              <ChevronRight className="w-3 h-3 text-crimson" />
                             </button>
                           ) : (
                             <span className="text-crimson text-[10px] font-mono font-medium flex items-center gap-1 uppercase tracking-wider">
@@ -253,7 +253,7 @@ export function PipelinesView({
                 </button>
                 <button
                   type="submit"
-                  className="px-4 py-1.5 rounded-[4px] bg-foreground hover:bg-foreground/90 text-background text-xs font-mono font-medium shadow-none transition-colors"
+                  className="px-4 py-1.5 rounded-[4px] bg-crimson hover:bg-crimson-hover text-white text-xs font-mono font-bold shadow-md shadow-crimson/20 transition-colors"
                 >
                   Create Deal
                 </button>

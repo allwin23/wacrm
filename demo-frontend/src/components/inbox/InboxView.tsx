@@ -147,19 +147,23 @@ export function InboxView() {
                   onClick={() => setActiveConversationId(conv.id)}
                   className={`w-full text-left p-3 transition-colors flex items-start gap-3 ${
                     isSelected
-                      ? 'bg-[#18181b] border-l-2 border-l-crimson'
+                      ? 'bg-[#18181b] border-l-4 border-l-crimson'
                       : 'hover:bg-[#131316]'
                   }`}
                 >
                   <div className="relative shrink-0">
-                    <div className="w-9 h-9 rounded-[4px] bg-[#18181b] border border-[#27272a] flex items-center justify-center text-xs font-mono font-medium text-foreground">
+                    <div className={`w-9 h-9 rounded-[4px] border flex items-center justify-center text-xs font-mono font-medium ${
+                      isSelected
+                        ? 'bg-crimson/15 border-crimson text-crimson font-bold'
+                        : 'bg-[#18181b] border-[#27272a] text-foreground'
+                    }`}>
                       {conv.contact.name
                         .split(' ')
                         .map((n) => n[0])
                         .join('')}
                     </div>
                     {conv.status === 'open' && (
-                      <span className="absolute bottom-0 right-0 w-2 h-2 rounded-[1px] bg-foreground" />
+                      <span className="absolute bottom-0 right-0 w-2 h-2 rounded-[1px] bg-crimson animate-pulse" />
                     )}
                   </div>
 
@@ -319,7 +323,7 @@ export function InboxView() {
                       onClick={() => applyQuickReply(qr.content)}
                       className="w-full text-left p-1.5 rounded-[3px] hover:bg-[#18181b] text-xs text-[#e4e4e7] flex items-center gap-2 border border-transparent hover:border-[#27272a]"
                     >
-                      <span className="font-mono text-foreground text-[10px]">
+                      <span className="font-mono text-crimson font-bold text-[10px]">
                         {qr.shortcut}
                       </span>
                       <span className="truncate text-[11px] font-mono text-[#a1a1aa]">
@@ -349,7 +353,7 @@ export function InboxView() {
                       onClick={() => applyTemplate(tpl.body_text)}
                       className="w-full text-left p-1.5 rounded-[3px] hover:bg-[#18181b] text-xs text-[#e4e4e7] border border-transparent hover:border-[#27272a]"
                     >
-                      <div className="font-mono font-medium text-foreground text-[10px]">
+                      <div className="font-mono font-bold text-crimson text-[10px]">
                         {tpl.name} • {tpl.category}
                       </div>
                       <div className="truncate text-[11px] font-mono text-[#a1a1aa]">
@@ -487,10 +491,10 @@ export function InboxView() {
                   {activeDeal.title}
                 </div>
                 <div className="flex items-center justify-between text-xs">
-                  <span className="text-foreground font-mono font-semibold">
+                  <span className="text-crimson font-mono font-bold text-sm">
                     ${activeDeal.value.toLocaleString()}
                   </span>
-                  <span className="text-[10px] font-mono text-[#71717a] uppercase">
+                  <span className="text-[10px] font-mono text-crimson uppercase px-1.5 py-0.2 rounded bg-crimson/10 border border-crimson/30">
                     {activeDeal.status}
                   </span>
                 </div>
