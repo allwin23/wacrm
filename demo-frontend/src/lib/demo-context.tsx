@@ -11,9 +11,11 @@ import {
   Automation,
   QuickReply,
   Template,
+  WorkflowDefinition,
 } from './types'
 import {
   INITIAL_CONTACTS,
+  INITIAL_TAGS,
   INITIAL_CONVERSATIONS,
   INITIAL_MESSAGES,
   INITIAL_STAGES,
@@ -43,6 +45,8 @@ interface DemoContextType {
   moveDeal: (dealId: string, targetStageId: string) => void
   createDeal: (deal: Partial<Deal>) => void
   toggleAutomation: (id: string) => void
+  saveWorkflow: (automationId: string, workflow: WorkflowDefinition) => void
+  createAutomationWorkflow: (name: string, description: string, workflow?: WorkflowDefinition) => string
   createBroadcast: (broadcast: Partial<Broadcast>) => void
   resetToDefault: () => void
 }
@@ -264,6 +268,76 @@ export function DemoProvider({ children }: { children: React.ReactNode }) {
     )
   }
 
+  const saveWorkflow = (automationId: string, workflow: WorkflowDefinition) => {
+    setAutomations((prev) =>
+      prev.map((a) =>
+        a.id === automationId
+          ? {
+              ...a,
+              workflow,
+              name: workflow.name,
+              description: workflow.description,
+            }
+          : a
+      )
+    )
+  }
+
+  const createAutomationWorkflow = (
+    name: string,
+    description: string,
+    workflow?: WorkflowDefinition
+  ): string => {
+    const newId = 'auto-' + Date.now()
+    const wf: WorkflowDefinition = workflow || {
+      id: 'wf-' + Date.now(),
+      name: name || 'Custom Inbound Workflow',
+      description: description || 'Visual n8n automation flow for WhatsApp',
+      createdAt: new Date().toISOString(),
+      nodes: [
+        {
+          id: 'n-1',
+          type: 'trigger',
+          title: 'WhatsApp Message Inbound',
+          subtitle: 'Event: First customer message',
+          x: 60,
+          y: 160,
+          config: { event: 'new_message_received' },
+        },
+        {
+          id: 'n-2',
+          type: 'action',
+          title: 'Send Auto-Response',
+          subtitle: 'Instant greeting message',
+          x: 360,
+          y: 160,
+          config: {
+            actionType: 'send_message',
+            messageBody: 'Thanks for reaching out! A specialist will assist you shortly.',
+          },
+        },
+      ],
+      connections: [
+        { id: 'c-1', fromNodeId: 'n-1', fromHandle: 'default', toNodeId: 'n-2' },
+      ],
+    }
+
+    const newAuto: Automation = {
+      id: newId,
+      name: name || 'Custom Inbound Workflow',
+      description: description || 'Visual n8n automation flow for WhatsApp',
+      trigger_type: 'new_message_received',
+      is_active: true,
+      execution_count: 0,
+      last_executed_at: null,
+      created_at: new Date().toISOString(),
+      workflow: wf,
+    }
+
+    setAutomations((prev) => [newAuto, ...prev])
+    return newId
+  }
+
   const createBroadcast = (data: Partial<Broadcast>) => {
     const newBroadcast: Broadcast = {
       id: 'bc-' + Date.now(),
@@ -314,6 +388,8 @@ export function DemoProvider({ children }: { children: React.ReactNode }) {
         moveDeal,
         createDeal,
         toggleAutomation,
+        saveWorkflow,
+        createAutomationWorkflow,
         createBroadcast,
         resetToDefault,
       }}

@@ -74,6 +74,52 @@ export interface Broadcast {
   created_at: string
 }
 
+export type WorkflowNodeType = 'trigger' | 'condition' | 'action' | 'ai' | 'webhook' | 'delay'
+
+export interface WorkflowNodeConfig {
+  event?: string
+  keyword?: string
+  actionType?: 'send_message' | 'send_template' | 'add_tag' | 'create_deal' | 'webhook'
+  templateName?: string
+  messageBody?: string
+  tagName?: string
+  dealTitle?: string
+  dealStage?: string
+  dealValue?: number
+  webhookUrl?: string
+  delayMinutes?: number
+  conditionField?: string
+  conditionOperator?: 'contains' | 'equals' | 'starts_with'
+  conditionValue?: string
+}
+
+export interface WorkflowNode {
+  id: string
+  type: WorkflowNodeType
+  title: string
+  subtitle: string
+  x: number
+  y: number
+  config: WorkflowNodeConfig
+}
+
+export interface WorkflowConnection {
+  id: string
+  fromNodeId: string
+  fromHandle?: 'default' | 'true' | 'false'
+  toNodeId: string
+}
+
+export interface WorkflowDefinition {
+  id: string
+  name: string
+  description: string
+  nodes: WorkflowNode[]
+  connections: WorkflowConnection[]
+  createdAt: string
+  lastRun?: string
+}
+
 export interface Automation {
   id: string
   name: string
@@ -83,6 +129,7 @@ export interface Automation {
   execution_count: number
   last_executed_at: string | null
   created_at: string
+  workflow?: WorkflowDefinition
 }
 
 export interface QuickReply {
